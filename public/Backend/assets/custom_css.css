@@ -1,0 +1,29 @@
+/* General table styling */
+.table td, .table th {
+    vertical-align: middle; /* Align content vertically in the middle */
+    text-align: center; /* Center text in table cells */
+}
+
+/* Style for the action buttons */
+.action-buttons {
+    white-space: nowrap; /* Prevent wrapping of the buttons */
+}
+
+.action-buttons a {
+    margin: 0 5px; /* Add space between buttons */
+    color: #007bff; /* Default color for the icons */
+    font-size: 1.2rem; /* Increase icon size */
+    transition: color 0.3s ease; /* Smooth color change on hover */
+}
+
+.action-buttons a:hover {
+    color: #0056b3; /* Darker color on hover */
+}
+
+.edit-button i {
+    color: #28a745; /* Green color for edit icon */
+}
+
+.delete-button i {
+    color: #dc3545; /* Red color for delete icon */
+}
