@@ -5,13 +5,15 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\WebController;
 use app\Http\Middleware\AdminMiddleware;
 
 
 // Trang chính
-Route::get('/', function () {
-    return view('pages.index');
-})->name('home');
+Route::get('/', [WebController::class, 'index'])->name('index');
+Route::get('/product', [WebController::class, 'product'])->name('product');
+
+
 
 // Đăng nhập
 Route::get('/login', [UserController::class, 'login'])->name('login');

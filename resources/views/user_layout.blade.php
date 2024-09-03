@@ -140,11 +140,11 @@
 						<div class="col-md-6">
 							<div class="header-search">
 								<form>
-									<select class="input-select">
-										<option value="0">All Categories</option>
-										<option value="1">Category 01</option>
-										<option value="1">Category 02</option>
-									</select>
+                                    @csrf
+									{{-- <select class="input-select" name="category_id">
+										<option value="0">Danh mục</option>
+                                        @yield('categories')
+									</select> --}}
 									<input class="input" placeholder="Search here">
 									<button class="search-btn">Search</button>
 								</form>
@@ -157,10 +157,10 @@
 							<div class="header-ctn">
 								<!-- Wishlist -->
 								<div>
-									<a href="#">
+									<a href="{{ url('') }}">
 										<i class="fa fa-heart-o"></i>
-										<span>Your Wishlist</span>
-										<div class="qty">2</div>
+										<span>Yêu thích</span>
+										<div class="qty">0</div>
 									</a>
 								</div>
 								<!-- /Wishlist -->
@@ -170,7 +170,7 @@
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
 										<span>Your Cart</span>
-										<div class="qty">3</div>
+										<div class="qty">0</div>
 									</a>
 									<div class="cart-dropdown">
 										<div class="cart-list">
@@ -236,8 +236,9 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#">Hot Deals</a></li>
+						<li class="active"><a href="{{ url('/') }}">Home</a></li>
+						<li class="active"><a href="{{ url('/product') }}">Sản phẩm</a></li>
+
 					</ul>
 					<!-- /NAV -->
 				</div>

@@ -476,8 +476,10 @@ textarea.input {
 }
 
 .header-search form .input {
-  width: calc(100% - 260px);
-  margin-right: -4px;
+    width: calc(100% - 120px);
+    border-bottom-left-radius: 20px;
+    margin-right: -4px;
+    border-top-left-radius: 20px;
 }
 
 .header-search form .search-btn {
