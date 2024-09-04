@@ -132,6 +132,7 @@
 
                     @endphp
                     <div class="col-md-4 col-xs-6">
+                        <a href="{{ URL::to('product').'/'.$product->ProductId }}">
                         <div class="product">
                             <div class="product-img">
                                 <img src="{{ $image ? asset('storage/' . $image->ImageUrl) : 'default_image_url' }}" alt="{{ $product->Name }}">
@@ -152,6 +153,7 @@
                             </div>
                         </div>
                     </div>
+                </a>
                     @if(!$j)
                     <div class="clearfix visible-lg visible-md"></div>
                     @endif

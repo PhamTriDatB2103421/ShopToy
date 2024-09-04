@@ -10,8 +10,10 @@ use app\Http\Middleware\AdminMiddleware;
 
 
 // Trang chính
-Route::get('/', [WebController::class, 'index'])->name('index');
+Route::get('/', [WebController::class, 'index'])->name('home');
 Route::get('/product', [WebController::class, 'product'])->name('product');
+Route::get('product/{id}',[WebController::class, 'product_detail'])->name('product_detail');
+Route::post('/product/{id}/review', [WebController::class, 'storeReview'])->name('product.review');
 
 
 

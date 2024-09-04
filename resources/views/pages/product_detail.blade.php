@@ -12,9 +12,9 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">All Categories</a></li>
-							<li><a href="#">{{ $product->category->Name }}</a></li>
+							<li><a href="{{ url('/') }}">Home</a></li>
+							<li><a href="{{ url('product') }}">All Categories</a></li>
+							<li><a href="#">{{ $product_detail->category->Name }}</a></li>
 						</ul>
 					</div>
 				</div>
@@ -33,21 +33,13 @@
 					<!-- Product main img -->
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
-							<div class="product-preview">
-								<img src="./img/product01.png" alt="">
-							</div>
+                            @foreach ($product_detail->images as $image)
+                                <div class="product-preview">
+                                    <img src="{{ $image ? asset('storage/' . $image->ImageUrl) : 'default_image_url' }}" alt="{{ $product_detail->Name }}">
+                                </div>
+                            @endforeach
 
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
 
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
-							</div>
 						</div>
 					</div>
 					<!-- /Product main img -->
@@ -55,21 +47,11 @@
 					<!-- Product thumb imgs -->
 					<div class="col-md-2  col-md-pull-5">
 						<div id="product-imgs">
-							<div class="product-preview">
-								<img src="./img/product01.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product03.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product06.png" alt="">
-							</div>
-
-							<div class="product-preview">
-								<img src="./img/product08.png" alt="">
-							</div>
+							@foreach ($product_detail->images as $image)
+                                <div class="product-preview">
+                                    <img src="{{ $image ? asset('storage/' . $image->ImageUrl) : 'default_image_url' }}" alt="{{ $product_detail->Name }}">
+                                </div>
+                            @endforeach
 						</div>
 					</div>
 					<!-- /Product thumb imgs -->
@@ -77,43 +59,25 @@
 					<!-- Product details -->
 					<div class="col-md-5">
 						<div class="product-details">
-							<h2 class="product-name">product name goes here</h2>
+							<h2 class="product-name">{{ $product_detail->Name }}</h2>
 							<div>
 								<div class="product-rating">
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star"></i>
-									<i class="fa fa-star-o"></i>
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <i class="fa fa-star {{ $i <= $average_rating ? '' : 'fa-star-o' }}"></i>
+                                        @endfor
 								</div>
-								<a class="review-link" href="#">10 Review(s) | Add your review</a>
 							</div>
 							<div>
-								<h3 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h3>
+								<h3 class="product-price">{{ number_format($product_detail->Price, 0, ',', '.') }}đ</h3>
 								<span class="product-available">In Stock</span>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
-							<div class="product-options">
-								<label>
-									Size
-									<select class="input-select">
-										<option value="0">X</option>
-									</select>
-								</label>
-								<label>
-									Color
-									<select class="input-select">
-										<option value="0">Red</option>
-									</select>
-								</label>
-							</div>
+							<p>{{ $product_detail->Description }}</p>
 
 							<div class="add-to-cart">
 								<div class="qty-label">
-									Qty
+									Số lượng
 									<div class="input-number">
-										<input type="number">
+										<input type="number" value="1">
 										<span class="qty-up">+</span>
 										<span class="qty-down">-</span>
 									</div>
@@ -127,18 +91,10 @@
 							</ul>
 
 							<ul class="product-links">
-								<li>Category:</li>
-								<li><a href="#">Headphones</a></li>
-								<li><a href="#">Accessories</a></li>
+								<li>Danh mục:</li>
+								<li><a href="#">{{ $product_detail->category->Name }}</a></li>
 							</ul>
 
-							<ul class="product-links">
-								<li>Share:</li>
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i></a></li>
-							</ul>
 
 						</div>
 					</div>
@@ -149,9 +105,9 @@
 						<div id="product-tab">
 							<!-- product tab nav -->
 							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-								<li><a data-toggle="tab" href="#tab2">Details</a></li>
-								<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+								<li class="active"><a data-toggle="tab" href="#tab1">Mô tả sản phẩm</a></li>
+								<li><a data-toggle="tab" href="#tab2">Mô tả danh mục</a></li>
+								<li><a data-toggle="tab" href="#tab3">Đánh giá (3)</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -161,7 +117,7 @@
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
 										<div class="col-md-12">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											<p>{{ $product_detail->Description }}</p>
 										</div>
 									</div>
 								</div>
@@ -171,188 +127,101 @@
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
 										<div class="col-md-12">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                            <p>{{ $product_detail->category->Description }}</p>
 										</div>
 									</div>
 								</div>
 								<!-- /tab2  -->
 
-								<!-- tab3  -->
-								<div id="tab3" class="tab-pane fade in">
-									<div class="row">
-										<!-- Rating -->
-										<div class="col-md-3">
-											<div id="rating">
-												<div class="rating-avg">
-													<span>4.5</span>
-													<div class="rating-stars">
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star"></i>
-														<i class="fa fa-star-o"></i>
-													</div>
-												</div>
-												<ul class="rating">
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-														</div>
-														<div class="rating-progress">
-															<div style="width: 80%;"></div>
-														</div>
-														<span class="sum">3</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div style="width: 60%;"></div>
-														</div>
-														<span class="sum">2</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div></div>
-														</div>
-														<span class="sum">0</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div></div>
-														</div>
-														<span class="sum">0</span>
-													</li>
-													<li>
-														<div class="rating-stars">
-															<i class="fa fa-star"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-															<i class="fa fa-star-o"></i>
-														</div>
-														<div class="rating-progress">
-															<div></div>
-														</div>
-														<span class="sum">0</span>
-													</li>
-												</ul>
-											</div>
-										</div>
-										<!-- /Rating -->
+                                <!-- tab3 -->
+                                <div id="tab3" class="tab-pane fade in">
+                                    <div class="row">
+                                        <!-- Rating -->
+                                        <div class="col-md-3">
+                                            <div id="rating">
+                                                <div class="rating-avg">
+                                                    <span>{{ number_format($average_rating, 1) }}</span>
+                                                    <div class="rating-stars">
+                                                        @for ($i = 1; $i <= 5; $i++)
+                                                            <i class="fa fa-star {{ $i <= $average_rating ? '' : 'fa-star-o' }}"></i>
+                                                        @endfor
+                                                    </div>
+                                                </div>
+                                                <ul class="rating">
+                                                    @for ($i = 5; $i >= 1; $i--)
+                                                        <li>
+                                                            <div class="rating-stars">
+                                                                @for ($j = 1; $j <= 5; $j++)
+                                                                    <i class="fa fa-star {{ $j <= $i ? '' : 'fa-star-o' }}"></i>
+                                                                @endfor
+                                                            </div>
+                                                            <div class="rating-progress">
+                                                                <div style="width: {{ $ratings_count[$i] / max($product_detail->reviews->count(), 1) * 100 }}%;"></div>
+                                                            </div>
+                                                            <span class="sum">{{ $ratings_count[$i] }}</span>
+                                                        </li>
+                                                    @endfor
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- /Rating -->
 
-										<!-- Reviews -->
-										<div class="col-md-6">
-											<div id="reviews">
-												<ul class="reviews">
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
-												</ul>
-												<ul class="reviews-pagination">
-													<li class="active">1</li>
-													<li><a href="#">2</a></li>
-													<li><a href="#">3</a></li>
-													<li><a href="#">4</a></li>
-													<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-												</ul>
-											</div>
-										</div>
-										<!-- /Reviews -->
+                                        <!-- Reviews -->
+                                        <div class="col-md-6">
+                                            <div id="reviews">
+                                                <ul class="reviews">
+                                                    @forelse ($product_detail->reviews as $review)
+                                                        <li>
+                                                            <div class="review-heading">
+                                                                <h5 class="name">{{ $review->user->FullName ?? 'Người dùng ẩn danh' }}</h5>
+                                                                <p class="date">
+                                                                    {{ \Carbon\Carbon::parse($review->Created_At)->format('d m yy, H:i') }}
+                                                                </p>
 
-										<!-- Review Form -->
-										<div class="col-md-3">
-											<div id="review-form">
-												<form class="review-form">
-													<input class="input" type="text" placeholder="Your Name">
-													<input class="input" type="email" placeholder="Your Email">
-													<textarea class="input" placeholder="Your Review"></textarea>
-													<div class="input-rating">
-														<span>Your Rating: </span>
-														<div class="stars">
-															<input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
-															<input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
-															<input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
-															<input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
-															<input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
-														</div>
-													</div>
-													<button class="primary-btn">Submit</button>
-												</form>
-											</div>
-										</div>
-										<!-- /Review Form -->
-									</div>
-								</div>
-								<!-- /tab3  -->
+                                                                <div class="review-rating">
+                                                                    @for ($i = 1; $i <= 5; $i++)
+                                                                        <i class="fa fa-star {{ $i <= $review->Rating ? '' : 'fa-star-o' }}"></i>
+                                                                    @endfor
+                                                                </div>
+                                                            </div>
+                                                            <div class="review-body">
+                                                                <p>{{ $review->Comment }}</p>
+                                                            </div>
+                                                        </li>
+                                                    @empty
+                                                        <li>Chưa có đánh giá</li>
+                                                    @endforelse
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- /Reviews -->
+
+                                        <!-- Review Form -->
+                                        <div class="col-md-3">
+                                            <div id="review-form">
+                                                <form class="review-form" method="POST" action="{{ route('product.review', $product_detail->ProductId) }}">
+                                                    @csrf
+                                                    <input class="input" type="text" name="name" placeholder="Your Name" required>
+                                                    <input class="input" type="email" name="email" placeholder="Your Email" required>
+                                                    <textarea class="input" name="comment" placeholder="Your Review" required></textarea>
+                                                    <div class="input-rating">
+                                                        <span>Your Rating: </span>
+                                                        <div class="stars">
+                                                            @for ($i = 5; $i >= 1; $i--)
+                                                                <input id="star{{ $i }}" name="rating" value="{{ $i }}" type="radio"><label for="star{{ $i }}"></label>
+                                                            @endfor
+                                                        </div>
+                                                    </div>
+                                                    <button class="primary-btn" type="submit">Submit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <!-- /Review Form -->
+                                    </div>
+                                </div>
+                                <!-- /tab3 -->
+
+
 							</div>
 							<!-- /product tab content  -->
 						</div>

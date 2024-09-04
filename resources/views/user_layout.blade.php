@@ -129,7 +129,7 @@
 						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
-								<a href="#" class="logo">
+								<a href="{{ url('/') }}" class="logo">
 									<img src="{{ asset('/frontend/img/logo.png') }}" alt="logo">
 								</a>
 							</div>
