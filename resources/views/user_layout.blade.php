@@ -91,7 +91,7 @@
                                 <i class="fa fa-user-o"></i> {{ $name }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" style="color: black;" href="{{ URL('use_info') }}">Thông tin tài khoản</a>
+                                <a class="dropdown-item" style="color: black;" href="{{ URL::to('user_info').'/'.session('UserId') }}">Thông tin tài khoản</a>
                                 <a class="dropdown-item" style="color: black;" href="{{ URL('admin/index') }}">Chuyển sang giao diện quản lý</a>
                                 <a class="dropdown-item" style="color: black;" href="{{ URL('logout') }}">Đăng xuất</a>
                             </div>

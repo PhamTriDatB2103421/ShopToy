@@ -172,7 +172,10 @@ class UserController extends Controller
         // Chuyển hướng và thông báo thành công
         return redirect()->route('admin.all_users')->with('message', 'Người dùng đã được thêm thành công');
     }
-
+    public function info_user($id) {
+        $user = User::find($id);
+        return view('pages.user_info');
+    }
 
 
 }
