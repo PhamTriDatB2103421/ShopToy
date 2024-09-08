@@ -10,17 +10,20 @@ class ProductDiscount extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_id',
-        'discount_id',
+        'ProductId',
+        'DiscountId',
     ];
+    protected $primaryKey = 'ProductDiscountId';
+    // Nếu khóa chính  tự động tăng
+    public $incrementing = true;
 
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'ProductId', 'ProductId');
     }
 
     public function discount()
     {
-        return $this->belongsTo(Discount::class);
+        return $this->belongsTo(Discount::class, 'DiscountId', 'DiscountId');
     }
 }

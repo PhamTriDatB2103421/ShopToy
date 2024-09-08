@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WebController;
 use app\Http\Middleware\AdminMiddleware;
@@ -49,6 +50,19 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/edit_product/{id}', [ProductController::class, 'edit'])->name('admin.edit_product');
     Route::post('/update_product/{id}', [ProductController::class, 'update'])->name('admin.update_product');
     Route::delete('/delete_product/{id}', [ProductController::class, 'destroy'])->name('admin.delete_product');
+    // discount
+    Route::get('/discount', [DiscountController::class, 'all'])->name('admin.all_discount');
+    Route::get('/discount/add', [DiscountController::class, 'add'])->name('admin.add_discount');
+    Route::post('/discount/store', [DiscountController::class, 'store'])->name('admin.store_discount');
+    Route::get('/discount/edit/{id}', [DiscountController::class, 'edit'])->name('admin.edit_discount');
+    Route::get('/discount/edit_exce/{id}', [DiscountController::class, 'edit_exce'])->name('admin.edit_exce_discount');
+    Route::delete('/discount/delete/{id}', [DiscountController::class, 'destroy'])->name('admin.delete_discount');
+
+
+
+
+
+
 });
 
 

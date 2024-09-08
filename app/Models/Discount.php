@@ -10,15 +10,21 @@ class Discount extends Model
     use HasFactory;
 
     protected $fillable = [
-        'discount_code',
-        'description',
-        'discount_type',
-        'discount_value',
-        'start_date',
-        'end_date',
-        'is_active',
+        'DiscountCode',
+        'Description',
+        'DiscountType',
+        'DiscountValue',
+        'StartDate',
+        'EndDate',
+        'IsActive',
     ];
+    protected $primaryKey = 'DiscountId';
+    // Nếu khóa chính  tự động tăng
+    public $incrementing = true;
 
+    public function productDiscount()  {
+        return $this->belongsToMany(ProductDiscount::class, 'DiscountId','DiscountId');
+    }
     public function products()
     {
         return $this->belongsToMany(Product::class, 'product_discounts');
