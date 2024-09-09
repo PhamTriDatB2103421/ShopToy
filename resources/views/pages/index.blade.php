@@ -2,6 +2,30 @@
 @section('title')
 <title>Trang chủ</title>
 @endsection
+@section('cart')
+    @foreach($cartItems as $item)
+        @php
+            $product = $item->product;
+            $productName = $product ? $product->Name : 'Unknown Product';
+            $productPrice = $product ? $product->Price : 0;
+            $imageUrl = $product && $product->images && $product->images->isNotEmpty() ? $product->images->first()->ImageUrl : 'path/to/default/image.jpg';
+            $quantity = $item->Quantity ?? 0;
+            $totalPrice = $productPrice * $quantity;
+        @endphp
+        <div class="product-widget">
+            <div class="product-img">
+                <img src="{{ asset('storage/' . $imageUrl) }}" alt="{{ $productName }}">
+            </div>
+            <div class="product-body">
+                <h3 class="product-name"><a href="#">{{ $productName }}</a></h3>
+                <h4 class="product-price">
+                    <span class="qty">{{ $quantity }}x</span>{{ number_format($totalPrice, 0, ',', '.') }}đ
+                </h4>
+            </div>
+            <button class="delete" data-cart-item-id="{{ $item->CartItemId }}"><i class="fa fa-close"></i></button>
+        </div>
+    @endforeach
+@endsection
 @section('user_content')
 		<!-- SECTION -->
 		<div class="section">
@@ -26,32 +50,35 @@
                                 <div id="tab1" class="tab-pane active">
                                     <div class="products-slick" data-nav="#slick-nav-1">
                                         @foreach ($recent_products as $product)
-                                        <!-- product -->
-                                        @php
-                                            $image = $product->images->first();
-                                        @endphp
-                                        <div class="product">
-                                            <div class="product-img">
-                                                <img src="{{ $image ? asset('storage/' . $image->ImageUrl) : 'default_image_url' }}" alt="{{ $product->Name }}">
-                                                <div class="product-label">
-                                                    <span class="new">NEW</span>
-                                                </div>
+                                            <!-- product -->
+                                            @php
+                                                $image = $product->images->first();
+                                            @endphp
+                                            <div class="product">
+                                                <a href="{{ URL::to('/product').'/'.$product->ProductId }}">
+                                                    <div class="product-img">
+                                                        <img src="{{ $image ? asset('storage/' . $image->ImageUrl) : 'default_image_url' }}" alt="{{ $product->Name }}">
+                                                        <div class="product-label">
+                                                            <span class="new">NEW</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product-body">
+                                                        <p class="product-category">{{ $product->category->Name }}</p>
+                                                        <h3 class="product-name"><a href="#">{{ $product->Name }}</a></h3>
+                                                        <h4 class="product-price">{{ number_format($product->Price, 0, ',', '.') }}đ</h4>
+                                                        <div class="product-btns">
+                                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="add-to-cart">
+                                                        <button class="add-to-cart-btn" data-product-id="{{ $product->ProductId }}"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                                    </div>
+                                                </a>
                                             </div>
-                                            <div class="product-body">
-                                                <p class="product-category">{{ $product->category->Name }}</p>
-                                                <h3 class="product-name"><a href="#">{{ $product->Name }}</a></h3>
-                                                <h4 class="product-price">{{ number_format($product->Price, 0, ',', '.') }}đ</h4>
-                                                <div class="product-btns">
-                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                </div>
-
-                                            </div>
-                                            <div class="add-to-cart">
-                                                <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-                                            </div>
-                                        </div>
-                                        <!-- /product -->
+                                            <!-- /product -->
                                         @endforeach
+
+
                                     </div>
                                     <div id="slick-nav-1" class="products-slick-nav"></div>
                                 </div>

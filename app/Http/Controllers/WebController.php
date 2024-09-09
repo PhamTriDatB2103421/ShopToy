@@ -8,6 +8,7 @@ use App\Models\Category;
 use Carbon\Carbon;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 
 class WebController extends Controller
 {
@@ -19,10 +20,13 @@ class WebController extends Controller
                                   ->get();
 
         $categories = Category::all();
+        $cart = Cart::where('UserId', Auth::id())->first();
+        $cartItems = $cart ? $cart->cartItems()->with('product')->get() : collect([]);
 
         return view('pages.index', [
             'recent_products' => $recent_Products,
             'categories' => $categories,
+            'cartItems' => $cartItems,
         ]);
     }
     public function product(){
@@ -31,10 +35,13 @@ class WebController extends Controller
 
         // Lấy tất cả danh mục
         $categories = Category::withCount('products')->get();
+        $cart = Cart::where('UserId', Auth::id())->first();
+        $cartItems = $cart ? $cart->cartItems()->with('product')->get() : collect([]);
 
         return view('pages.product', [
             'products' => $products,
             'categories' => $categories,
+            'cartItems' => $cartItems,
         ]);
     }
 
@@ -62,12 +69,14 @@ class WebController extends Controller
         foreach ($product_detail->reviews as $review) {
             $review->created_at = \Carbon\Carbon::parse($review->created_at);
         }
-
+        $cart = Cart::where('UserId', Auth::id())->first();
+        $cartItems = $cart ? $cart->cartItems()->with('product')->get() : collect([]);
         return view('pages.product_detail', [
             'products' => $products,
             'product_detail' => $product_detail,
             'average_rating' => $average_rating,
             'ratings_count' => $ratings_count,
+            'cartItems' => $cartItems,
         ]);
     }
     public function storeReview(Request $request, $id) {

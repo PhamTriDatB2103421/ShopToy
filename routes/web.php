@@ -7,7 +7,8 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WebController;
-use app\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\CartController;
 
 
 // Trang chính
@@ -16,7 +17,10 @@ Route::get('/product', [WebController::class, 'product'])->name('product');
 Route::get('product/{id}',[WebController::class, 'product_detail'])->name('product_detail');
 Route::post('/product/{id}/review', [WebController::class, 'storeReview'])->name('product.review');
 Route::get('/user/{id}', [UserController::class, 'info_user'])->name('info_user');
+//cart
 
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add')->middleware('checklogin');
+Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->middleware('checklogin');
 
 
 
@@ -55,8 +59,13 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/discount/add', [DiscountController::class, 'add'])->name('admin.add_discount');
     Route::post('/discount/store', [DiscountController::class, 'store'])->name('admin.store_discount');
     Route::get('/discount/edit/{id}', [DiscountController::class, 'edit'])->name('admin.edit_discount');
-    Route::get('/discount/edit_exce/{id}', [DiscountController::class, 'edit_exce'])->name('admin.edit_exce_discount');
-    Route::delete('/discount/delete/{id}', [DiscountController::class, 'destroy'])->name('admin.delete_discount');
+    Route::post('/discount/edit_exce/{id}', [DiscountController::class, 'updateDiscount'])->name('admin.edit_exce_discount');
+    Route::delete('/discount/delete/{id}', [DiscountController::class, 'destroy'])->name('admin.destroy_discount');
+    Route::get('/discount/product/{id}', [DiscountController::class, 'product'])->name('admin.discount.product');
+    Route::delete('/admin/productdiscounts/{discountId}/{productId}', [DiscountController::class, 'destroy'])
+    ->name('admin.productdiscounts.destroy');
+
+
 
 
 

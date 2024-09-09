@@ -10,8 +10,14 @@ class Cart extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'UserId',
     ];
+    protected $primaryKey = 'CartId';
+    protected $table = 'carts';
+    // Nếu khóa chính  tự động tăng
+    public $incrementing = true;
+    public $timestamps = false;
+
 
     public function user()
     {
@@ -20,6 +26,6 @@ class Cart extends Model
 
     public function cartItems()
     {
-        return $this->hasMany(CartItem::class);
+        return $this->hasMany(CartItem::class, 'CartId', 'CartId');
     }
 }

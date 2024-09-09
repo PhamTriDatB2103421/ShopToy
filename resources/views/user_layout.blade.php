@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -119,6 +120,53 @@
 				</div>
 			</div>
 			<!-- /TOP HEADER -->
+            @if(session()->has('success') || session()->has('error') || session()->has('warning') || session()->has('info'))
+            <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1100;">
+                @if(session()->has('success'))
+                    <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                {{ session('success') }}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
+
+                @if(session()->has('error'))
+                    <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                {{ session('error') }}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
+
+                @if(session()->has('warning'))
+                    <div class="toast align-items-center text-bg-warning border-0 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                {{ session('warning') }}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
+
+                @if(session()->has('info'))
+                    <div class="toast align-items-center text-bg-info border-0 show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                {{ session('info') }}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        @endif
 
 			<!-- MAIN HEADER -->
 			<div id="header">
@@ -166,46 +214,37 @@
 								<!-- /Wishlist -->
 
 								<!-- Cart -->
-								<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-										<i class="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
-										<div class="qty">0</div>
-									</a>
-									<div class="cart-dropdown">
-										<div class="cart-list">
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="public/frontend/img/product01.png" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
+                                <div class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span>Giỏ hàng</span>
+                                        <div class="qty">{{ Session::has('cart') ? Session::get('cart')->count() : 0 }}</div>
+                                    </a>
+                                    <div class="cart-dropdown">
+                                        <div class="cart-list">
+                                            @if(Session::has('cart') && Session::get('cart')->count() > 0)
 
-											<div class="product-widget">
-												<div class="product-img">
-													<img src="./img/product02.png" alt="">
-												</div>
-												<div class="product-body">
-													<h3 class="product-name"><a href="#">product name goes here</a></h3>
-													<h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-												</div>
-												<button class="delete"><i class="fa fa-close"></i></button>
-											</div>
-										</div>
-										<div class="cart-summary">
-											<small>3 Item(s) selected</small>
-											<h5>SUBTOTAL: $2940.00</h5>
-										</div>
-										<div class="cart-btns">
-											<a href="#">View Cart</a>
-											<a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
-										</div>
-									</div>
-								</div>
+                                           @yield('cart')
+
+                                            @else
+                                                <p>Your cart is empty.</p>
+                                            @endif
+                                        </div>
+                                        <div class="cart-summary">
+                                            <small>{{ Session::has('cart') ? Session::get('cart')->count() . ' Item(s) selected' : '0 Item(s) selected' }}</small>
+                                            <h5>SUBTOTAL: {{ number_format(Session::has('cart') ? Session::get('cart')->sum(function ($item) {
+                                                $product = $item->product ?? null;
+                                                $price = $product ? $product->Price : 0;
+                                                return $price * ($item->Quantity ?? 0);
+                                            }) : 0, 0, ',', '.') }}đ</h5>
+                                        </div>
+                                        <div class="cart-btns">
+                                            <a href="#">View Cart</a>
+                                            <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+
 								<!-- /Cart -->
 
 								<!-- Menu Toogle -->
@@ -365,5 +404,52 @@
 <script src="{{ asset('frontend/js/nouislider.min.js') }}"></script>
 <script src="{{ asset('frontend/js/jquery.zoom.min.js') }}"></script>
 <script src="{{ asset('frontend/js/main.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function (toastEl) {
+            var toast = new bootstrap.Toast(toastEl)
+            toast.show()
+
+            toastEl.addEventListener('hidden.bs.toast', function () {
+                toastEl.remove();
+            })
+        })
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.add-to-cart-btn').click(function() {
+            var productId = $(this).data('product-id');
+            $.ajax({
+                url: '{{ route('cart.add') }}', // Địa chỉ URL để thêm vào giỏ hàng
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}', // Đảm bảo rằng CSRF token được gửi cùng với yêu cầu
+                    product_id: productId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert('Product added to cart!');
+                        // Cập nhật giỏ hàng hiển thị nếu cần
+                        // Ví dụ: Cập nhật số lượng sản phẩm trong giỏ hàng
+                        location.reload(); // Tải lại trang hoặc cập nhật phần giỏ hàng
+                    } else {
+                        alert('Vui lòng đăng nhập để thêm giỏ hàng: ');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    alert('Error adding product to cart: ' + error);
+                }
+            });
+        });
+    });
+
+</script>
+
+
+
 </body>
 </html>

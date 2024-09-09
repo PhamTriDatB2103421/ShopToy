@@ -17,7 +17,6 @@ class Product extends Model
         'CategoryId',
     ];
     protected $primaryKey = 'ProductId';
-    // Nếu khóa chính  tự động tăng
     public $incrementing = true;
 
     public function category()
@@ -40,14 +39,16 @@ class Product extends Model
         return $this->hasMany(Review::class, 'ProductId', 'ProductId');
     }
 
-
     public function discounts()
     {
-        return $this->belongsToMany(Discount::class, 'product_discounts');
+        return $this->belongsToMany(Discount::class, 'productdiscounts', 'ProductId', 'DiscountId');
     }
 
     public function inventory()
     {
         return $this->hasOne(Inventory::class);
+    }
+    public function cartItems(){
+        return $this->hasMany(CartItem::class);
     }
 }

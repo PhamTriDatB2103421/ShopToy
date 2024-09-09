@@ -5,14 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="keywords"
-      content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Matrix lite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Matrix admin lite design, Matrix admin lite dashboard bootstrap 5 dashboard template"
-    />
-    <meta
-      name="description"
-      content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
-    />
     <meta name="robots" content="noindex,nofollow" />
     @yield('title')
     <!-- Favicon icon -->
@@ -23,11 +15,15 @@
     />
     <!-- Custom CSS -->
     <link href="{{ asset('Backend/assets/libs/flot/css/float-chart.css')}}" rel="stylesheet" />
+    <link
+    href="{{ asset('Backend/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') }}"
+    rel="stylesheet"
+    />
     <!-- Custom CSS -->
     <link href="{{ asset('Backend/dist/css/style.min.css')}}" rel="stylesheet" />
     <link href="{{ asset('Backend/assets/custom_css.css')}}" rel="stylesheet" />
 
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('Backend/assets/extra-libs/multicheck/multicheck.css') }}">
   </head>
 
   <body>
@@ -259,8 +255,30 @@
                     </li>
                 </ul>
             </li>
+            <li class="sidebar-item">
+                <a
+                  class="sidebar-link has-arrow waves-effect waves-dark"
+                  href="javascript:void(0)"
+                  aria-expanded="false"
+                  ><i class="mdi mdi-tag-multiple"></i
+                  ><span class="hide-menu">Danh sách mã giảm giá</span></a
+                >
+                <ul aria-expanded="false" class="collapse first-level">
+                  <li class="sidebar-item">
+                    <a href="{{ url('admin/discount') }}" class="sidebar-link"
+                      ><i class="mdi mdi-tag-multiple"></i></i
+                      ><span class="hide-menu">Danh sách mã</span></a
+                    >
+                  </li>
+                  <li class="sidebar-item">
+                    <a href="{{ url('admin/discount/add') }}" class="sidebar-link"
+                      ><i class="mdi mdi-tag-plus"></i
+                        ><span class="hide-menu">Thêm mã</span></a
+                    >
+                  </li>
+                </ul>
+              </li>
 
->
 
 
             </ul>
@@ -270,6 +288,7 @@
 
       </aside>
 @yield('admin_content')
+
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -305,5 +324,40 @@
     <script src="{{ asset('Backend/assets/libs/flot/jquery.flot.crosshair.js')}}"></script>
     <script src="{{ asset('Backend/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
     <script src="{{ asset('Backend/dist/js/pages/chart/chart-page-init.js')}}"></script>
+    <script src="{{ asset('Backend/assets/extra-libs/DataTables/datatables.min.js')}}"></script>
+    <script>
+      /****************************************
+       *       Basic Table                   *
+       ****************************************/
+      $(document).ready(function() {
+            $('#zero_config').DataTable({
+                "language": {
+                    "decimal":        "",
+                    "emptyTable":     "Không có dữ liệu trong bảng",
+                    "info":           "Hiển thị _START_ đến _END_ trong _TOTAL_ mục",
+                    "infoEmpty":      "Hiển thị 0 đến 0 của 0 mục",
+                    "infoFiltered":   "(lọc từ _MAX_ tổng số mục)",
+                    "infoPostFix":    "",
+                    "thousands":      ",",
+                    "lengthMenu":     "Hiển thị _MENU_ mục",
+                    "loadingRecords": "Đang tải...",
+                    "processing":     "Đang xử lý...",
+                    "search":         "Tìm kiếm:",
+                    "zeroRecords":    "Không tìm thấy kết quả",
+                    "paginate": {
+                        "first":      "Đầu tiên",
+                        "last":       "Cuối cùng",
+                        "next":       "Tiếp theo",
+                        "previous":   "Trước đó"
+                    },
+                    "aria": {
+                        "sortAscending":  ": sắp xếp tăng dần",
+                        "sortDescending": ": sắp xếp giảm dần"
+                    }
+                }
+            });
+        });
+
+    </script>
   </body>
 </html>

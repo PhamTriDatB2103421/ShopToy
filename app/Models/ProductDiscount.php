@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,7 +13,6 @@ class ProductDiscount extends Model
         'DiscountId',
     ];
     protected $primaryKey = 'ProductDiscountId';
-    // Nếu khóa chính  tự động tăng
     public $incrementing = true;
 
     public function product()
