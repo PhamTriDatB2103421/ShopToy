@@ -10,13 +10,14 @@ class Shipment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_id',
-        'tracking_number',
-        'shipped_date',
-        'estimated_delivery_date',
-        'delivery_status',
+        'OrderId',
+        'TrackingNumber',
+        'ShippedDate',
+        'EstimatedDeliveryDate',
+        'DeliveryStatus',
     ];
-
+    protected $primaryKey = 'ShipmentId';
+    public $incrementing = true;
     public function order()
     {
         return $this->belongsTo(Order::class);

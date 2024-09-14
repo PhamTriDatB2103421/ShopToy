@@ -13,6 +13,7 @@ class CartController extends Controller
     public function addToCart(Request $request)
     {
         $productId = $request->input('product_id');
+        $quantity = $request->input('quantity', 1); // Lấy số lượng từ request, nếu không có thì mặc định là 1
         $userId = Auth::id(); // Lấy ID người dùng hiện tại
 
         // Kiểm tra xem sản phẩm có tồn tại không
@@ -29,19 +30,19 @@ class CartController extends Controller
 
         // Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
         $cartItem = CartItem::where('CartId', $cart->CartId)
-                             ->where('ProductId', $productId)
-                             ->first();
+                            ->where('ProductId', $productId)
+                            ->first();
 
         if ($cartItem) {
-            // Nếu đã có sản phẩm, tăng số lượng lên 1
-            $cartItem->Quantity++;
+            // Nếu đã có sản phẩm, tăng số lượng thêm số lượng được gửi lên
+            $cartItem->Quantity += $quantity;
             $cartItem->save();
         } else {
             // Nếu chưa có sản phẩm, thêm mới
             CartItem::create([
                 'CartId' => $cart->CartId,
                 'ProductId' => $productId,
-                'Quantity' => 1
+                'Quantity' => $quantity
             ]);
         }
 
@@ -57,6 +58,7 @@ class CartController extends Controller
 
 
 
+
     private function updateCartSession($userId)
     {
         $cart = Cart::where('UserId', $userId)->first();
@@ -64,31 +66,19 @@ class CartController extends Controller
         Session::put('cart', $cartItems);
     }
 
-    public function removeFromCart(Request $request)
-    {
-        $productId = $request->input('product_id');
+    public function remove(Request $request) {
+        $cartItemId = $request->input('cart_item_id');
+        $cartItem = CartItem::find($cartItemId);
 
-        // Lấy giỏ hàng của user
-        $cart = Cart::where('UserId', Auth::id())->first();
+        if ($cartItem) {
+            $cartItem->delete();
 
-        if ($cart) {
-            // Tìm sản phẩm trong giỏ hàng
-            $cartItem = $cart->cartItems()->where('ProductId', $productId)->first();
-
-            if ($cartItem) {
-                // Xóa sản phẩm khỏi giỏ hàng
-                $cartItem->delete();
-
-                // Cập nhật session
-                $cartItems = $cart->cartItems()->with('product')->get();
-                session(['cart' => $cartItems]);
-
-                return redirect()->back()->with('success', 'Đã xóa.');
-            }
+            return response()->json(['success' => true]);
         }
 
-        return redirect()->back()->with('error', 'Product not found in cart.');
+        return response()->json(['success' => false, 'message' => 'Item not found']);
     }
+
 }
 
 

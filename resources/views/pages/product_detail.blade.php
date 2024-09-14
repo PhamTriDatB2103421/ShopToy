@@ -96,18 +96,19 @@
 								<span class="product-available">In Stock</span>
 							</div>
 							<p>{{ $product_detail->Description }}</p>
-
-							<div class="add-to-cart">
-								<div class="qty-label">
-									Số lượng
-									<div class="input-number">
-										<input type="number" value="1">
-										<span class="qty-up">+</span>
-										<span class="qty-down">-</span>
-									</div>
-								</div>
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
-							</div>
+                            <div class="add-to-cart">
+                                <div class="qty-label">
+                                    Số lượng
+                                    <div class="input-number">
+                                        <input type="number" id="product-quantity" value="1" min="1">
+                                        <span class="qty-up">+</span>
+                                        <span class="qty-down">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="add-to-cart">
+                                <button class="add-to-cart-btn" data-product-id="{{ $product_detail->ProductId }}"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                            </div>
 
 							<ul class="product-btns">
 								<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>

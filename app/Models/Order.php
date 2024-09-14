@@ -10,12 +10,15 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'order_status',
-        'total_amount',
-        'payment_status',
-        'shipping_address',
+        'UserId',
+        'OrderStatus',
+        'TotalAmount',
+        'PaymentStatus',
+        'ShippingAddress',
     ];
+    protected $primaryKey = 'OrderId';
+    public $incrementing = true;
+
 
     public function user()
     {
@@ -24,7 +27,7 @@ class Order extends Model
 
     public function orderItems()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->hasMany(OrderItem::class, 'OrderId','OrderId');
     }
 
     public function payment()

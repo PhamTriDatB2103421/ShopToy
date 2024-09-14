@@ -10,11 +10,13 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'order_id',
-        'payment_method',
-        'payment_date',
-        'amount',
+        'OrderId',
+        'PaymentMethod',
+        'PaymentDate',
+        'Amount',
     ];
+    protected $primaryKey = 'PaymentId';
+    public $incrementing = true;
 
     public function order()
     {

@@ -9,7 +9,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WebController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\CartController;
-
+use App\Http\Controllers\OrderController;
+use App\Models\Order;
 
 // Trang chính
 Route::get('/', [WebController::class, 'index'])->name('home');
@@ -17,12 +18,16 @@ Route::get('/product', [WebController::class, 'product'])->name('product');
 Route::get('product/{id}',[WebController::class, 'product_detail'])->name('product_detail');
 Route::post('/product/{id}/review', [WebController::class, 'storeReview'])->name('product.review');
 Route::get('/user/{id}', [UserController::class, 'info_user'])->name('info_user');
+
 //cart
-
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add')->middleware('checklogin');
-Route::post('/cart/remove', [CartController::class, 'removeFromCart'])->middleware('checklogin');
+Route::post('/cart/remove', [CartController::class, 'remove'])->name('cart.removed')->middleware('checklogin');
 
-
+//checkout
+Route::get('/checkout/{id}', [OrderController::class, 'form'])->name('checkout.form')->middleware('checklogin');
+Route::post('/order/submit/{cartId}', [OrderController::class, 'submitOrder'])->name('order.submit');
+Route::post('/checkout/apply-coupon', [OrderController::class, 'applyCoupon'])->name('order.apply_coupon');
+Route::get('/order-success/{order_id}', [OrderController::class, 'success'])->name('order.success');
 
 // Đăng nhập
 Route::get('/login', [UserController::class, 'login'])->name('login');

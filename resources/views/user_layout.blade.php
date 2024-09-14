@@ -212,6 +212,10 @@
 									</a>
 								</div>
 								<!-- /Wishlist -->
+                                @php
+                                    $cart = DB::select('select CartId from Carts where UserId = '.session('UserId'));
+                                    $cartId = $cart ? $cart[0]->CartId : null;
+                                @endphp
 
 								<!-- Cart -->
                                 <div class="dropdown">
@@ -239,10 +243,9 @@
                                             }) : 0, 0, ',', '.') }}đ</h5>
                                         </div>
                                         <div class="cart-btns">
-                                            <a href="#">View Cart</a>
-                                            <a href="#">Checkout <i class="fa fa-arrow-circle-right"></i></a>
+                                            <div></div>
+                                            <a href="{{ URL::to('/checkout').'/'.$cartId }}">Thanh toán <i class="fa fa-arrow-circle-right"></i></a>                                        </div>
                                         </div>
-                                    </div>
                                 </div>
 
 								<!-- /Cart -->
@@ -422,21 +425,23 @@
     $(document).ready(function() {
         $('.add-to-cart-btn').click(function() {
             var productId = $(this).data('product-id');
+            var quantity = $(this).closest('.product-details').find('input[type="number"]').val() || 1; // Lấy số lượng từ input hoặc mặc định là 1
+
             $.ajax({
-                url: '{{ route('cart.add') }}', // Địa chỉ URL để thêm vào giỏ hàng
+                url: '{{ route("cart.add") }}', // Địa chỉ URL để thêm vào giỏ hàng
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}', // Đảm bảo rằng CSRF token được gửi cùng với yêu cầu
-                    product_id: productId
+                    product_id: productId,
+                    quantity: quantity // Truyền số lượng sản phẩm
                 },
                 success: function(response) {
                     if (response.success) {
-                        alert('Product added to cart!');
+                        alert('Đã thêm sản phẩm vào giỏ hàng');
                         // Cập nhật giỏ hàng hiển thị nếu cần
-                        // Ví dụ: Cập nhật số lượng sản phẩm trong giỏ hàng
                         location.reload(); // Tải lại trang hoặc cập nhật phần giỏ hàng
                     } else {
-                        alert('Vui lòng đăng nhập để thêm giỏ hàng: ');
+                        alert('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng');
                     }
                 },
                 error: function(xhr, status, error) {
@@ -446,6 +451,34 @@
             });
         });
     });
+
+    $(document).ready(function() {
+    $('.product-widget .delete').click(function() {
+        var cartItemId = $(this).data('cart-item-id'); // Lấy CartItemId từ thuộc tính data
+
+        $.ajax({
+            url: '{{ route('cart.removed') }}', // Địa chỉ URL xử lý việc xóa sản phẩm khỏi giỏ hàng
+            type: 'POST',
+            data: {
+                _token: '{{ csrf_token() }}', // CSRF token
+                cart_item_id: cartItemId // Truyền CartItemId để xóa
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert('Đã xóa sản phẩm');
+                    location.reload(); // Tải lại trang để cập nhật giỏ hàng
+                } else {
+                    alert('Có lỗi xảy ra, vui lòng thử lại');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+                alert('Lỗi xóa sản phẩm khỏi giỏ hàng: ' + error);
+            }
+        });
+        });
+    });
+
 
 </script>
 

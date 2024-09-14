@@ -14,7 +14,7 @@ class WebController extends Controller
 {
     public function index(){
 
-        $recent_Products = Product::where('updated_at', '>=', Carbon::now()->subDays(7))
+        $recent_Products = Product::where('updated_at', '>=', Carbon::now()->subDays(20))
                                   ->orderBy('updated_at', 'desc')
                                   ->with('images')
                                   ->get();

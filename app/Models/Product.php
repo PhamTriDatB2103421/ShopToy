@@ -31,7 +31,7 @@ class Product extends Model
 
     public function orderItems()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->hasMany(OrderItem::class, 'ProductId','ProductId');
     }
 
     public function reviews()
