@@ -213,8 +213,12 @@
 								</div>
 								<!-- /Wishlist -->
                                 @php
-                                    $cart = DB::select('select CartId from Carts where UserId = '.session('UserId'));
-                                    $cartId = $cart ? $cart[0]->CartId : null;
+                                    if(Session('UserId')){
+                                        $cart = DB::select('select CartId from Carts where UserId = '.session('UserId'));
+                                        $cartId = $cart ? $cart[0]->CartId : null;
+                                    }
+
+                                    $cartId = null;
                                 @endphp
 
 								<!-- Cart -->
