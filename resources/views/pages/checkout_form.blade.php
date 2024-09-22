@@ -64,17 +64,20 @@
                                 <div id="coupon_message"></div>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="fullname" placeholder="Tên" value="{{ Session::get('FullName') }}" required>
+                                <input class="input" type="text" name="fullname" placeholder="Tên"
+                                    value="{{ Session::get('FullName') }}" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="email" name="email" placeholder="Email" value="{{ Session::get('Email') }}" required>
+                                <input class="input" type="email" name="email" placeholder="Email"
+                                    value="{{ Session::get('Email') }}" required>
                             </div>
                             <div class="form-group">
                                 <input class="input" type="text" name="address" placeholder="Địa chỉ"
                                     value="{{ $address ?? '' }}" required>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="tel" name="tel" placeholder="Số điện thoại" value="{{ Session::get('PhoneNumber') }}" required>
+                                <input class="input" type="tel" name="tel" placeholder="Số điện thoại"
+                                    value="{{ Session::get('PhoneNumber') }}" required>
                             </div>
                             <!-- Shipping Details -->
                             <!-- Order notes -->
@@ -113,14 +116,16 @@
                         </div>
                         <div class="order-col">
                             <div><strong>TỔNG CỘNG</strong></div>
-                            <div><strong class="order-total">{{ number_format(
-                                $cartItems->sum(function ($cartItem) {
-                                    return $cartItem->product->Price * $cartItem->Quantity;
-                                }),
-                                0,
-                                ',',
-                                '.',
-                            ) }} VNĐ</strong></div>
+                            <div><strong
+                                    class="order-total">{{ number_format(
+                                        $cartItems->sum(function ($cartItem) {
+                                            return $cartItem->product->Price * $cartItem->Quantity;
+                                        }),
+                                        0,
+                                        ',',
+                                        '.',
+                                    ) }}
+                                    VNĐ</strong></div>
                         </div>
                     </div>
                     <!-- Removed duplicate form tag -->
@@ -133,7 +138,8 @@
                 const applyCouponButton = document.getElementById('apply_coupon');
                 const couponCodeInput = document.getElementById('coupon_code');
                 const couponMessage = document.getElementById('coupon_message');
-                const totalElement = document.querySelector('.order-total'); // Assuming you have a class 'order-total' to show the total
+                const totalElement = document.querySelector(
+                    '.order-total'); // Assuming you have a class 'order-total' to show the total
 
                 applyCouponButton.addEventListener('click', function() {
                     const couponCode = couponCodeInput.value.trim();
@@ -169,7 +175,7 @@
                             }
                         })
                         .catch(error => {
-                            couponMessage.textContent = 'Đã xảy ra lỗi. Vui lòng thử lại.'+ error;
+                            couponMessage.textContent = 'Đã xảy ra lỗi. Vui lòng thử lại.' + error;
                             couponMessage.style.color = 'red';
                         });
                 });

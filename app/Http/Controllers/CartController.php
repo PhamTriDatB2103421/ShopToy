@@ -72,7 +72,9 @@ class CartController extends Controller
 
         if ($cartItem) {
             $cartItem->delete();
-
+            if(Session(key: 'cart')){
+                $request->session('cart')->flush(); // Xóa tất cả session
+            }
             return response()->json(['success' => true]);
         }
 
@@ -80,5 +82,3 @@ class CartController extends Controller
     }
 
 }
-
-
