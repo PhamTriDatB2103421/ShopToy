@@ -73,7 +73,7 @@ class CartController extends Controller
         if ($cartItem) {
             $cartItem->delete();
             if(Session(key: 'cart')){
-                $request->session('cart')->flush(); // Xóa tất cả session
+                $request->session()->forget('cart'); // Xóa tất cả session
             }
             return response()->json(['success' => true]);
         }
