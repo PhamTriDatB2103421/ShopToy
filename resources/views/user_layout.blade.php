@@ -217,11 +217,9 @@
                                         $cart = DB::select('select CartId from Carts where UserId = '.session('UserId'));
                                         $cartId = $cart ? $cart[0]->CartId : null;
                                     }
-
-                                    $cartId = null;
                                 @endphp
 
-								<!-- Cart -->
+                                <!-- Cart -->
                                 <div class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                         <i class="fa fa-shopping-cart"></i>
@@ -231,9 +229,7 @@
                                     <div class="cart-dropdown">
                                         <div class="cart-list">
                                             @if(Session::has('cart') && Session::get('cart')->count() > 0)
-
-                                           @yield('cart')
-
+                                                @yield('cart')
                                             @else
                                                 <p>Your cart is empty.</p>
                                             @endif
@@ -248,9 +244,11 @@
                                         </div>
                                         <div class="cart-btns">
                                             <div></div>
-                                            <a href="{{ URL::to('/checkout').'/'.$cartId }}">Thanh toán <i class="fa fa-arrow-circle-right"></i></a>                                        </div>
+                                            <a href="{{ $cartId ? route('checkout.form', ['id' => $cartId]) : '#' }}">Thanh toán <i class="fa fa-arrow-circle-right"></i></a>
                                         </div>
+                                    </div>
                                 </div>
+
 
 								<!-- /Cart -->
 
