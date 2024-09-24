@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -27,6 +26,7 @@
 
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
+    <!--Start of Fchat.vn--><script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66f2ef22e7629d5de041a934" async="async"></script><!--End of Fchat.vn-->
 </head>
 <style>
     /* Style for dropdown menu */
@@ -533,10 +533,9 @@
                     }
                 });
             });
-        });
-    </script>
-
-
+            });
+            //<!--Start of Fchat.vn--><script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66f2954418f03d62bc0a2b12" async="async"></script><!--End of Fchat.vn-->
+ 
 
 </body>
 
