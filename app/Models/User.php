@@ -9,8 +9,6 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
-    public static $laracombee = ['name' => 'string', 'age' => 'int'];
-
 
     protected $fillable = [
         'Username',

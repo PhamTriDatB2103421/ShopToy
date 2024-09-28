@@ -26,7 +26,8 @@
 
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
-    <!--Start of Fchat.vn--><script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66f2ef22e7629d5de041a934" async="async"></script><!--End of Fchat.vn-->
+    <!--Start of Fchat.vn-->
+    <script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66f2ef22e7629d5de041a934" async="async"></script><!--End of Fchat.vn-->
 </head>
 <style>
     /* Style for dropdown menu */
@@ -535,7 +536,7 @@
             });
             });
             //<!--Start of Fchat.vn--><script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66f2954418f03d62bc0a2b12" async="async"></script><!--End of Fchat.vn-->
- 
+
 
 </body>
 

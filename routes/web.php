@@ -70,6 +70,8 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::delete('/admin/productdiscounts/{discountId}/{productId}', [DiscountController::class, 'destroy'])
     ->name('admin.productdiscounts.destroy');
 
+    //order
+    Route::get('/order/list', [OrderController::class, 'list'])->name('admin.order.list');
 
 
 

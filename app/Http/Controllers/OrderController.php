@@ -186,5 +186,10 @@ class OrderController extends Controller
         $order = Order::with('orderItems.product')->findOrFail($orderId);
         return view('pages.checkout_success', compact('order'));
     }
-
+    public function list(){
+        $order = Order::all();
+        return view('admin.order.list',[
+            'orders' => $order,
+        ]);
+    }
 }
