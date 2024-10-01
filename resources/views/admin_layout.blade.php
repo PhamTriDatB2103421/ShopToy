@@ -206,16 +206,16 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                                aria-expanded="false"><i class="mdi mdi-tag-multiple"></i><span
+                                aria-expanded="false"><i class="fas fa-shopping-bag"></i><span
                                     class="hide-menu">Danh sách đơn hàng</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item">
                                     <a href="{{ url('admin/order/list') }}" class="sidebar-link"><i
-                                            class="mdi mdi-tag-multiple"></i></i><span class="hide-menu">Danh sách đơn</span></a>
+                                            class="fas fa-shopping-cart"></i></i><span class="hide-menu">Danh sách đơn</span></a>
                                 </li>
                                 <li class="sidebar-item">
                                     <a href="{{ url('admin/order/reveneu') }}" class="sidebar-link"><i
-                                            class="mdi mdi-tag-plus"></i><span class="hide-menu">Thống kê danh thu</span></a>
+                                            class="fas fa-chart-pie"></i><span class="hide-menu">Thống kê danh thu</span></a>
                                 </li>
                             </ul>
                         </li>
