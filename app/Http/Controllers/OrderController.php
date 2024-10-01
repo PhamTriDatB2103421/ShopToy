@@ -186,10 +186,88 @@ class OrderController extends Controller
         $order = Order::with('orderItems.product')->findOrFail($orderId);
         return view('pages.checkout_success', compact('order'));
     }
+
+
+
+
     public function list(){
         $order = Order::all();
         return view('admin.order.list',[
             'orders' => $order,
         ]);
     }
+    public function cancel($id){
+        $order= Order::find($id);
+        $order->OrderStatus = 'Cancelled';
+        $order->save();
+        return redirect()->back()->with('message', 'Đã hủy Đơn');
+    }
+    public function detail($id){
+        $order = Order::find($id);
+        $OrderItems = OrderItem::where('OrderId' ,$id)->get();
+        return view('admin.order.detail',
+            [
+                'order'=> $order,
+                'orderItems' => $OrderItems,
+            ]);
+    }
+    public function ad_edit(Request $request) {
+        // Lấy thông tin order từ request
+        $orderId = $request->input('OrderId');
+        $orderStatus = $request->input('OrderStatus');
+        $paymentStatus = $request->input('PaymentStatus');
+
+        // Tìm order theo ID
+        $order = Order::find($orderId);
+
+        // Cập nhật status
+        if ($order) {
+            $order->OrderStatus = $orderStatus;
+            $order->PaymentStatus = $paymentStatus;
+            $order->save();
+        }
+
+        // Điều hướng về trang quản lý đơn hàng
+        return redirect()->back()->with('message', 'Cập nhật thành công');
+    }
+    public function editOrderItem(Request $request) {
+        // Lấy thông tin từ request
+        $orderItemId = $request->input('OrderItemId');
+        $quantity = $request->input('Quantity');
+
+        // Tìm order item theo ID
+        $orderItem = OrderItem::find($orderItemId);
+
+        if ($orderItem) {
+            // Cập nhật số lượng order item
+            $orderItem->Quantity = $quantity;
+            $orderItem->save(); // Không cập nhật trực tiếp TotalPrice, MySQL sẽ tự động tính lại
+
+            // Tìm order liên quan đến order item
+            $order = $orderItem->order;
+
+            // Tính lại tổng giá của đơn hàng
+            $orderTotal = $order->orderItems->sum('TotalPrice');
+            $order->TotalAmount = $orderTotal; // Cập nhật tổng giá của đơn hàng
+            $order->save();
+        }
+
+        // Điều hướng về trang quản lý đơn hàng
+        return redirect()->back()->with('message', 'Cập nhật hoàn tất');
+    }
+    public function removeOrderItem($orderItemId) {
+        // Tìm order item theo ID và xóa
+        $orderItem = OrderItem::find($orderItemId);
+        if ($orderItem) {
+            $orderItem->delete();
+        }
+
+        // Điều hướng về trang quản lý đơn hàng
+        return redirect()->back()->with('message', 'Đã xóa sản phẩm');
+    }
+
+
+
+
+
 }

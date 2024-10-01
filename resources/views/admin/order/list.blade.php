@@ -46,45 +46,43 @@
                             <table id="zero_config" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>MÃ đơn hàng</th>
+                                        <th>Mã đơn hàng</th>
                                         <th>Tên khách hàng</th>
-                                        <th>Trạng thái đơn hàng</th>
                                         <th>Trạng thái vận chuyển</th>
+                                        <th>Trạng thái thanh toán</th>
                                         <th>Tổng tiền</th>
-                                        <th>Thanh toán</th>
+                                        <th>Địa chỉ giao hàng</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($products as $product)
+                                    @foreach ($orders as $order)
                                     <tr>
-                                        <td>{{ $product->Name }}</td>
-                                        <td>{{ $product->Description }}</td>
-                                        <td>{{ $product->Price }}</td>
-                                        <td>{{ $product->Stock }}</td>
-                                        <td>{{ $product->category->Name}}</td>
+                                        <td>{{ $order->OrderId }}</td>
+                                        <td>{{ $order->user->FullName }}</td>
+                                        <td>{{ $order->OrderStatus }}</td>
+                                        <td>{{ $order->PaymentStatus }}</td>
+                                        <td>{{ $order->TotalAmount }}</td>
+                                        <td>{{ $order->ShippingAddress}}</td>
                                         <td class="action-buttons">
-                                            <a class="edit-button" href="{{ route('admin.edit_product', ['id' => $product->ProductId]) }}">
+                                            <a class="edit-button" href="{{ URL::to('/admin/order/detail') .'/'.$order->OrderId }}">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <form action="{{ route('admin.delete_product', ['id' => $product->ProductId]) }}" method="POST" style="display:inline-block;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">
+                                                <a href="{{ URL::to('/admin/order/cancel').'/'.$order->OrderId }}"  class="btn btn-danger">
                                                     <i class="fa fa-times" aria-hidden="true"></i>
-                                                </button>
-                                            </form>
+                                                </a>
                                         </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Mô tả</th>
-                                        <th>Giá</th>
-                                        <th>Số lượng</th>
-                                        <th>Danh mục</th>
+                                        <th>Mã đơn hàng</th>
+                                        <th>Tên khách hàng</th>
+                                        <th>Trạng thái vận chuyển</th>
+                                        <th>Trạng thái thanh toán</th>
+                                        <th>Tổng tiền</th>
+                                        <th>Địa chỉ giao hàng</th>
                                         <th>Hành động</th>
                                     </tr>
                                 </tfoot>

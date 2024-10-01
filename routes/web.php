@@ -72,6 +72,12 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 
     //order
     Route::get('/order/list', [OrderController::class, 'list'])->name('admin.order.list');
+    Route::get('order/cancel/{id}', [OrderController::class, 'cancel'])->name('admin.order.cancel');
+    Route::get('/order/detail/{id}', [OrderController::class, 'detail'])->name('admin.order.detail');
+    Route::post('/order/ad_edit', [OrderController::class, 'ad_edit']);
+    Route::post('/order/orderitem/edit', [OrderController::class, 'editOrderItem']);
+    Route::get('/order/orderitem/remove/{id}', [OrderController::class, 'removeOrderItem']);
+
 
 
 

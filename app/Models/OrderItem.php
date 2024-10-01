@@ -14,6 +14,7 @@ class OrderItem extends Model
         'ProductId',
         'Quantity',
         'UnitPrice',
+        'TotalPrice',
     ];
     protected $primaryKey = 'OrderItemId';
     public $incrementing = true;
