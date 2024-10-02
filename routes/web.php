@@ -17,7 +17,7 @@ Route::get('/', [WebController::class, 'index'])->name('home');
 Route::get('/product', [WebController::class, 'product'])->name('product');
 Route::get('product/{id}',[WebController::class, 'product_detail'])->name('product_detail');
 Route::post('/product/{id}/review', [WebController::class, 'storeReview'])->name('product.review');
-Route::get('/user/{id}', [UserController::class, 'info_user'])->name('info_user');
+Route::get('/user_info/{id}', [UserController::class, 'info_user'])->name('info_user');
 
 //cart
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add')->middleware('checklogin');
@@ -86,6 +86,3 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
 
 
 });
-
-
-

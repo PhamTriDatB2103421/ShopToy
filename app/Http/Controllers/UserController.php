@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -174,7 +175,14 @@ class UserController extends Controller
     }
     public function info_user($id) {
         $user = User::find($id);
-        return view('pages.user_info');
+        $cart= Cart::where('UserId', $id)->first();
+        $cartItems = $cart->cartItems()->with('product')->get();
+
+        return view('pages.user_info',[
+            'user' => $user,
+            'cartItems'=>$cartItems
+        ]
+    );
     }
 
 
