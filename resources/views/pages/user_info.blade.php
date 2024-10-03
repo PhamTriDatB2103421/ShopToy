@@ -34,60 +34,61 @@
         <!-- Bảng hiển thị thông tin người dùng -->
         <div id="user-info">
             <h2>Thông tin tài khoản</h2>
-            <table>
-                <tr>
-                    <td>Họ tên:</td>
-                    <td id="display-name"></td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td id="display-email"></td>
-                </tr>
-                <tr>
-                    <td>Số điện thoại:</td>
-                    <td id="display-phone"></td>
-                </tr>
-                <tr>
-                    <td>Ngày sinh:</td>
-                    <td id="display-birth-date"></td>
-                </tr>
-                <tr>
-                    <td>Địa chỉ:</td>
-                    <td id="display-address"></td>
-                </tr>
-            </table>
+            <form>
+                <table>
+                    <tr>
+                        <td>Họ tên:</td>
+                        <td id="display-name"></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td id="display-email"></td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại:</td>
+                        <td id="display-phone"></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày sinh:</td>
+                        <td id="display-birth-date"></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ:</td>
+                        <td id="display-address"></td>
+                    </tr>
+                </table>
+            </form>
             <button id="edit-button">Chỉnh sửa thông tin</button>
         </div>
-
         <!-- Form chỉnh sửa thông tin (ban đầu ẩn) -->
         <div id="edit-form" style="display: none;">
             <h2>Chỉnh sửa thông tin</h2>
-            <form>
-                <div class="form-group">
-                    <label for="edit-name">Họ tên</label>
-                    <input type="text" id="edit-name" name="name" value="" required>
-                </div>
-                <div class="form-group">
-                    <label for="edit-email">Email</label>
-                    <input type="email" id="edit-email" name="email" value="" required>
-                </div>
-                <div class="form-group">
-                    <label for="edit-phone">Số điện thoại</label>
-                    <input type="tel" id="edit-phone" name="phone" value="" required>
-                </div>
-                <div class="form-group">
-                    <label for="edit-birth-date">Ngày sinh</label>
-                    <input type="date" id="edit-birth-date" name="birth-date" value="" required>
-                </div>
-                <div class="form-group">
-                    <label for="edit-address">Địa chỉ</label>
-                    <input type="text" id="edit-address" name="address" value="" required>
-                </div>
-                <div class="button">
-                    <button type="button" id="save-button">Lưu thông tin</button>
-                    <button type="button" id="cancel-button">Thoát</button>
-                </div>
+            <form action="submit.php" method="post">
+                <table>
+                    <tr>
+                        <td> <label for="edit-name">Họ Tên:</label></td>
+                        <td><input type="text" id="edit-name" name="name" value="" required></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="edit-email">Email:</label></td>
+                        <td><input type="text" id="edit-email" name="email" value="" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="edit-phone">Số điện thoại:</label></td>
+                        <td><input type="text" name="phone" id="edit-phone"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="edit-birthday">Ngày sinh:</label></td>
+                        <td><input type="date" name="birthday" id="edit-birthday"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="edit-address">Địa chỉ:</label></td>
+                        <td><input type="text" name="address" id="edit-address"></td>
+                    </tr>
+                </table>
             </form>
+            <button type="button" id="save-button">Lưu thông tin</button>
+            <button type="button" id="cancel-button">Thoát</button>
         </div>
     </div>
     <!-- xử lý chỉnh sửa thông tin-->

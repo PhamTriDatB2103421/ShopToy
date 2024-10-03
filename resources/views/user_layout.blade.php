@@ -27,7 +27,8 @@
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
     <!--Start of Fchat.vn-->
-    <script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66f2ef22e7629d5de041a934" async="async"></script><!--End of Fchat.vn-->
+    <script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66f2ef22e7629d5de041a934"
+        async="async"></script><!--End of Fchat.vn-->
 </head>
 <style>
     /* Style for dropdown menu */
@@ -95,9 +96,9 @@
         <div id="top-header">
             <div class="container">
                 <ul class="header-links pull-left">
-                    <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                    <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+                    <li><a href="#"><i class="fa fa-phone"></i> +84-783-894-977</a></li>
+                    <li><a href="#"><i class="fa fa-envelope-o"></i> firefly_shop@gmail</a></li>
+                    <li><a href="#"><i class="fa fa-map-marker"></i> Nhóm 02 Phát triển hệ thống TMĐT </a></li>
                 </ul>
                 <ul class="header-links pull-right">
                     @php
@@ -113,7 +114,8 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="userDropdown">
                                     <a class="dropdown-item" style="color: black;"
-                                        href="{{ URL::to('user_info') . '/' . session('UserId') }}">Thông tin tài khoản</a>
+                                        href="{{ URL::to('user_info') . '/' . session('UserId') }}">Thông tin tài
+                                        khoản</a>
                                     <a class="dropdown-item" style="color: black;"
                                         href="{{ URL('admin/index') }}">Chuyển sang giao diện quản lý</a>
                                     <a class="dropdown-item" style="color: black;" href="{{ URL('logout') }}">Đăng
@@ -169,8 +171,8 @@
                             <div class="toast-body">
                                 {{ session('error') }}
                             </div>
-                            <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                                data-bs-dismiss="toast" aria-label="Close"></button>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                                aria-label="Close"></button>
                         </div>
                     </div>
                 @endif
@@ -228,8 +230,8 @@
 										<option value="0">Danh mục</option>
                                         @yield('categories')
 									</select> --}}
-                                <input class="input" placeholder="Search here">
-                                <button class="search-btn">Search</button>
+                                <input class="input" placeholder="Tìm kiếm ở đây">
+                                <button class="search-btn">Tìm kiếm</button>
                             </form>
                         </div>
                     </div>
@@ -269,7 +271,7 @@
                                         @if (Session::has('cart') && Session::get('cart')->count() > 0)
                                             @yield('cart')
                                         @else
-                                            <p>Your cart is empty.</p>
+                                            <p>Giỏ hàng bạn đang trống.</p>
                                         @endif
                                     </div>
                                     <div class="cart-summary">
@@ -328,7 +330,7 @@
             <div id="responsive-nav">
                 <!-- NAV -->
                 <ul class="main-nav nav navbar-nav">
-                    <li class="active"><a href="{{ url('/') }}">Home</a></li>
+                    <li class="active"><a href="{{ url('/') }}">Trang chủ</a></li>
                     <li class="active"><a href="{{ url('/product') }}">Sản phẩm</a></li>
 
                 </ul>
@@ -352,26 +354,27 @@
                 <div class="row">
                     <div class="col-md-3 col-xs-6">
                         <div class="footer">
-                            <h3 class="footer-title">About Us</h3>
+                            <h3 class="footer-title">FIREFLY</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
                                 incididunt ut.</p>
                             <ul class="footer-links">
-                                <li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-                                <li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-                                <li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+                                <li><a href="#"><i class="fa fa-phone"></i> +84-783-894-977</a></li>
+                                <li><a href="#"><i class="fa fa-envelope-o"></i> firefly_shop@gmail</a></li>
+                                <li><a href="#"><i class="fa fa-map-marker"></i> Nhóm 02 Phát triển hệ thống
+                                        TMĐT </a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-md-3 col-xs-6">
                         <div class="footer">
-                            <h3 class="footer-title">Categories</h3>
+                            <h3 class="footer-title">Loại sản phẩm</h3>
                             <ul class="footer-links">
-                                <li><a href="#">Hot deals</a></li>
-                                <li><a href="#">Laptops</a></li>
-                                <li><a href="#">Smartphones</a></li>
-                                <li><a href="#">Cameras</a></li>
-                                <li><a href="#">Accessories</a></li>
+                                <li><a href="#">Bán chạy</a></li>
+                                <li><a href="#">Đồ chơi điều khiển</a></li>
+                                <li><a href="#">Đồ chơi lắp ráp-xếp hình</a></li>
+                                <li><a href="#">Đồ chơi sơ sinh</a></li>
+                                <li><a href="#">Đồ chơi giáo dục</a></li>
                             </ul>
                         </div>
                     </div>
@@ -380,26 +383,26 @@
 
                     <div class="col-md-3 col-xs-6">
                         <div class="footer">
-                            <h3 class="footer-title">Information</h3>
+                            <h3 class="footer-title">Thông tin</h3>
                             <ul class="footer-links">
                                 <li><a href="#">About Us</a></li>
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Orders and Returns</a></li>
-                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Liên hệ</a></li>
+                                <li><a href="#">Chính sách hỗ trợ</a></li>
+                                <li><a href="#">Đơn hàng</a></li>
+                                <li><a href="#">Điều khoản và điều kiện</a></li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="col-md-3 col-xs-6">
                         <div class="footer">
-                            <h3 class="footer-title">Service</h3>
+                            <h3 class="footer-title">Dịch vụ</h3>
                             <ul class="footer-links">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">View Cart</a></li>
-                                <li><a href="#">Wishlist</a></li>
-                                <li><a href="#">Track My Order</a></li>
-                                <li><a href="#">Help</a></li>
+                                <li><a href="#">Thông tin tài khoản</a></li>
+                                <li><a href="#">Giỏ hàng</a></li>
+                                <li><a href="#">Yêu thích</a></li>
+                                <li><a href="#">Đơn hàng</a></li>
+                                <li><a href="#">Hỗ trợ</a></li>
                             </ul>
                         </div>
                     </div>
@@ -482,7 +485,7 @@
             $('.add-to-cart-btn').click(function() {
                 var productId = $(this).data('product-id');
                 var quantity = $(this).closest('.product-details').find('input[type="number"]').val() ||
-                1; // Lấy số lượng từ input hoặc mặc định là 1
+                    1; // Lấy số lượng từ input hoặc mặc định là 1
 
                 $.ajax({
                     url: '{{ route('cart.add') }}', // Địa chỉ URL để thêm vào giỏ hàng
@@ -534,8 +537,9 @@
                     }
                 });
             });
-            });
-            //<!--Start of Fchat.vn--><script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66f2954418f03d62bc0a2b12" async="async"></script><!--End of Fchat.vn-->
+        });
+        //<!--Start of Fchat.vn--><script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66f2954418f03d62bc0a2b12" async="async">
+    </script><!--End of Fchat.vn-->
 
 
 </body>

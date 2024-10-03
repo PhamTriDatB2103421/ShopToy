@@ -2270,8 +2270,24 @@ textarea.input {
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 800px;
+    width: 100%;
     animation: fadeIn 1s ease;
+}
+
+.user_info-container>div>button {
+    padding: 12px;
+    background-color: rgba(121, 9, 25, 1);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 table {
