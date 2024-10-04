@@ -38,23 +38,19 @@
                 <table>
                     <tr>
                         <td>Họ tên:</td>
-                        <td id="display-name"></td>
+                        <td id="display-name">{{ $user->FullName }}</td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td id="display-email"></td>
+                        <td id="display-email">{{ $user->Email }}</td>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
-                        <td id="display-phone"></td>
-                    </tr>
-                    <tr>
-                        <td>Ngày sinh:</td>
-                        <td id="display-birth-date"></td>
+                        <td id="display-phone">{{ $user->PhoneNumber }}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ:</td>
-                        <td id="display-address"></td>
+                        <td id="display-address">{{ $user->Address }}</td>
                     </tr>
                 </table>
             </form>
@@ -67,23 +63,22 @@
                 <table>
                     <tr>
                         <td> <label for="edit-name">Họ Tên:</label></td>
-                        <td><input type="text" id="edit-name" name="name" value="" required></td>
+                        <td><input type="text" id="edit-name" name="name" value="{{ $user->FullName }}" required>
+                        </td>
                     </tr>
                     <tr>
                         <td> <label for="edit-email">Email:</label></td>
-                        <td><input type="text" id="edit-email" name="email" value="" required></td>
+                        <td><input type="text" id="edit-email" name="email" value="{{ $user->Email }}" required></td>
                     </tr>
                     <tr>
                         <td><label for="edit-phone">Số điện thoại:</label></td>
-                        <td><input type="text" name="phone" id="edit-phone"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="edit-birthday">Ngày sinh:</label></td>
-                        <td><input type="date" name="birthday" id="edit-birthday"></td>
+                        <td><input type="text" name="phone" id="edit-phone" value="{{ $user->PhoneNumber }}" required>
+                        </td>
                     </tr>
                     <tr>
                         <td><label for="edit-address">Địa chỉ:</label></td>
-                        <td><input type="text" name="address" id="edit-address"></td>
+                        <td><input type="text" name="address" id="edit-address" value="{{ $user->Address }}" required>
+                        </td>
                     </tr>
                 </table>
             </form>
@@ -126,3 +121,5 @@
         });
     </script>
 @endsection
+
+<!-- Trí Đạt viết hàm lưu thông tin thay đổi ở đây nhe Trí Đạttt -->
