@@ -276,7 +276,7 @@
                                     </div>
                                     <div class="cart-summary">
                                         <small>{{ Session::has('cart') ? Session::get('cart')->count() . ' Item(s) selected' : '0 Item(s) selected' }}</small>
-                                        <h5>SUBTOTAL:
+                                        <h5>Tổng cộng:
                                             {{ number_format(
                                                 Session::has('cart')
                                                     ? Session::get('cart')->sum(function ($item) {
