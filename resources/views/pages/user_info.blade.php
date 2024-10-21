@@ -32,6 +32,11 @@
 @section('user_content')
     <div class="user_info-container">
         <!-- Bảng hiển thị thông tin người dùng -->
+        @if(session('message'))
+             <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+        @endsession
         <div id="user-info">
             <h2>Thông tin tài khoản</h2>
             <form>
@@ -59,7 +64,8 @@
         <!-- Form chỉnh sửa thông tin (ban đầu ẩn) -->
         <div id="edit-form" style="display: none;">
             <h2>Chỉnh sửa thông tin</h2>
-            <form action="submit.php" method="post">
+            <form action="{{ route('user.detail.save') }}" method="post">
+                @csrf
                 <table>
                     <tr>
                         <td> <label for="edit-name">Họ Tên:</label></td>
@@ -68,7 +74,7 @@
                     </tr>
                     <tr>
                         <td> <label for="edit-email">Email:</label></td>
-                        <td><input type="text" id="edit-email" name="email" value="{{ $user->Email }}" required></td>
+                        <td><input type="text" id="edit-email" readonly name="email" value="{{ $user->Email }}" required></td>
                     </tr>
                     <tr>
                         <td><label for="edit-phone">Số điện thoại:</label></td>
@@ -81,8 +87,9 @@
                         </td>
                     </tr>
                 </table>
+                <button type="submit"  id="save-button">Lưu thông tin</button>
+
             </form>
-            <button type="button" id="save-button">Lưu thông tin</button>
             <button type="button" id="cancel-button">Thoát</button>
         </div>
     </div>

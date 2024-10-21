@@ -184,6 +184,28 @@ class UserController extends Controller
         ]
     );
     }
+    public function save_user_edit(Request $request) {
+        // Tìm user dựa vào email
+        $user = User::where('Email', $request->email)->first();
+
+        // Kiểm tra nếu user tồn tại
+        if ($user) {
+            // Cập nhật các thông tin cần thiết
+            $user->Username = $request->name;
+            $user->PhoneNumber = $request->phone;
+            $user->Address = $request->address;
+
+            // Lưu thông tin user
+            $user->save();
+
+            // Điều hướng về trang trước với thông báo thành công
+            return redirect()->back()->with('message', 'Cập nhật thành công');
+        } else {
+            // Trả về thông báo lỗi nếu không tìm thấy user
+            return redirect()->back()->with('error', 'Không tìm thấy người dùng');
+        }
+    }
+
 
 
 }

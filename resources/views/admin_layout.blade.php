@@ -103,7 +103,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated"
                                 aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="javascript:void(0)"><i
+                                <a class="dropdown-item" href="{{ route('info_user', session('UserId')) }}"><i
                                         class="mdi mdi-account me-1 ms-1"></i>Thông tin cá nhân</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ url('/') }}"><i

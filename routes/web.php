@@ -35,6 +35,9 @@ Route::post('/auth-login', [UserController::class, 'auth_login'])->name('auth.lo
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
+//user
+Route::post('/user_info/save', [UserController::class, 'save_user_edit'])->name('user.detail.save');
+
 // Admin
 Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/index', [AdminController::class, 'index'])->name('admin.index');
