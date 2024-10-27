@@ -14,6 +14,7 @@ class Product extends Model
         'Description',
         'Price',
         'Stock',
+        'so_luong_da_ban',
         'CategoryId',
     ];
     protected $primaryKey = 'ProductId';
