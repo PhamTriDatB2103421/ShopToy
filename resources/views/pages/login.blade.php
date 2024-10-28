@@ -35,16 +35,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        .btn-facebook {
-            background-color: #1877f2;
-            color: white;
-            border: none;
-        }
-
-        .btn-facebook:hover {
-            background-color: #166fe5;
-        }
-
         .form-footer {
             text-align: center;
             margin-top: 20px;
@@ -102,11 +92,6 @@
                         placeholder="Enter your password" required>
                 </div>
                 <button type="submit" class="btn btn-dark w-100">Đăng nhập</button>
-                <div class="text-center my-3">
-                    <p>Or</p>
-                    <button type="button" class="btn btn-facebook w-100"><i class="fa fa-facebook"></i> Đăng nhập bằng
-                        Facebook</button>
-                </div>
             </form>
 
             <div class="form-footer">
@@ -140,11 +125,6 @@
                         name="password_confirmation" placeholder="Confirm your password" required>
                 </div>
                 <button type="submit" class="btn btn-dark w-100">Đăng ký</button>
-                <div class="text-center my-3">
-                    <p>Or</p>
-                    <button type="button" class="btn btn-facebook w-100"><i class="fa fa-facebook"></i> Đăng ký với
-                        Facebook</button>
-                </div>
             </form>
 
             <div class="form-footer">
