@@ -9,26 +9,46 @@ use Carbon\Carbon;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Cart;
+use RecommendHelper;
 
 class WebController extends Controller
 {
     public function index(){
 
+        // Lấy danh sách sản phẩm gần đây (cập nhật trong vòng 356 ngày)
         $recent_Products = Product::where('updated_at', '>=', Carbon::now()->subDays(356))
                                   ->orderBy('updated_at', 'desc')
                                   ->with('images')
                                   ->get();
 
+        // Lấy tất cả danh mục
         $categories = Category::all();
+
+        // Lấy giỏ hàng của người dùng hiện tại (nếu có)
         $cart = Cart::where('UserId', Auth::id())->first();
         $cartItems = $cart ? $cart->cartItems()->with('product')->get() : collect([]);
 
-        return view('pages.index', [
-            'recent_products' => $recent_Products,
-            'categories' => $categories,
-            'cartItems' => $cartItems,
-        ]);
+        // Kiểm tra xem người dùng đã đăng nhập hay chưa
+        if (!Auth::check()) {
+            return view('pages.index', [
+                'recent_products' => $recent_Products,
+                'categories' => $categories,
+                'cartItems' => $cartItems,
+            ]);
+        } else {
+            // Khởi tạo RecommendHelper và lấy sản phẩm đề xuất
+            $rcm_product = new RecommendHelper();
+            $rcm_products = $rcm_product->recommendWithOrder();
+
+            return view('pages.index', [
+                'recent_products' => $recent_Products,
+                'categories' => $categories,
+                'cartItems' => $cartItems,
+                'rcm_products' => $rcm_products, // Thêm sản phẩm đề xuất vào view
+            ]);
+        }
     }
+
     public function product(){
         // Lấy tất cả sản phẩm cùng với hình ảnh liên quan
         $products = Product::with('images')->get();

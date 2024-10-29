@@ -9,7 +9,8 @@ use App\Models\Product;
 class RecommendHelper {
     public function recommendWithHotSaling() {
 
-        $hotSalingProducts = Product::orderBy('so_luong_da_ban', 'desc')->take(5)->get();
+        $hotSalingProducts = Product::orderBy('so_luong_da_ban', 'desc')
+            ->with('images')->take(5)->get();
 
         return $hotSalingProducts;
     }
@@ -27,8 +28,14 @@ class RecommendHelper {
 
     protected function recommendProductsBasedOnOrder($order) {
         $purchasedProductIds = $order->chiTietDonHangs->pluck('ProductId')->toArray();
-        $purchasedCategories = Product::whereIn('ProductId', $purchasedProductIds)->pluck('CatagoryId')->toArray();
-        $recommendedProducts = Product::whereIn('CatagoryId', $purchasedCategories)->whereNotIn('ProductId', $purchasedProductIds)->take(5)->get();
+        $purchasedCategories = Product::whereIn('ProductId', $purchasedProductIds)
+            ->pluck('CatagoryId')
+            ->toArray();
+        $recommendedProducts = Product::whereIn('CatagoryId', $purchasedCategories)
+            ->whereNotIn('ProductId', $purchasedProductIds)
+            ->with('images')
+            ->take(5)
+            ->get();
         return $recommendedProducts;
     }
 
