@@ -130,7 +130,8 @@
                                     <i class="fa fa-user-o"></i> {{ $name }}
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" style="color: black;" href="{{ URL('use_info') }}">Thông
+                                    <a class="dropdown-item" style="color: black;"
+                                        href="{{ URL::to('user_info') . '/' . session('UserId') }}">Thông
                                         tin tài khoản</a>
                                     <a class="dropdown-item" style="color: black;" href="{{ URL('logout') }}">Đăng
                                         xuất</a>
@@ -355,8 +356,6 @@
                     <div class="col-md-3 col-xs-6">
                         <div class="footer">
                             <h3 class="footer-title">FIREFLY</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut.</p>
                             <ul class="footer-links">
                                 <li><a href="#"><i class="fa fa-phone"></i> +84-783-894-977</a></li>
                                 <li><a href="#"><i class="fa fa-envelope-o"></i> firefly_shop@gmail</a></li>
@@ -385,10 +384,9 @@
                         <div class="footer">
                             <h3 class="footer-title">Thông tin</h3>
                             <ul class="footer-links">
-                                <li><a href="#">About Us</a></li>
                                 <li><a href="#">Liên hệ</a></li>
                                 <li><a href="#">Chính sách hỗ trợ</a></li>
-                                <li><a href="#">Đơn hàng</a></li>
+                                <li><a href={{ url('/order/list') }}>Đơn hàng</a></li>
                                 <li><a href="#">Điều khoản và điều kiện</a></li>
                             </ul>
                         </div>
@@ -398,7 +396,7 @@
                         <div class="footer">
                             <h3 class="footer-title">Dịch vụ</h3>
                             <ul class="footer-links">
-                                <li><a href="#">Thông tin tài khoản</a></li>
+                                <li><a href={{ url('/user_info/{id}') }}>Thông tin tài khoản</a></li>
                                 <li><a href="#">Giỏ hàng</a></li>
                                 <li><a href="#">Yêu thích</a></li>
                                 <li><a href="#">Đơn hàng</a></li>
