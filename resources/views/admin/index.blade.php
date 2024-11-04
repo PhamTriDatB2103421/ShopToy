@@ -96,12 +96,26 @@
                                         </div>
                                     </form>
                                 </div>
+                                <div class="col-lg-9 mt-4">
+                                    <!-- Hiển thị doanh thu nếu đã tính toán -->
+                                    @if (isset($totalRevenue))
+                                        <div class="row mt-4">
+                                            <div class="col-12">
+                                                <div class="bg-success p-10 text-white text-center">
+                                                    <h5 class="mb-0 mt-1">Doanh thu tháng
+                                                        {{ $month }}/{{ $year }}:</h5>
+                                                    <h3 class="font-weight-bold">
+                                                        {{ number_format($totalRevenue, 0, ',', '.') }} VNĐ</h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- ============================================================== -->
-            <!-- Sales chart -->
-            <!-- ============================================================== -->
-        @endsection
+        </div>
+    </div>
+@endsection
