@@ -49,6 +49,21 @@ class WebController extends Controller
             'cartItems' => $cartItems,
         ]);
     }
+    public function category_pro($id){
+        // Lấy tất cả sản phẩm cùng với hình ảnh liên quan
+        $products = Product::where('CategoryId', $id)->with('images')->get();
+
+        // Lấy tất cả danh mục
+        $categories = Category::withCount('products')->get();
+        $cart = Cart::where('UserId', Auth::id())->first();
+        $cartItems = $cart ? $cart->cartItems()->with('product')->get() : collect([]);
+
+        return view('pages.product', [
+            'products' => $products,
+            'categories' => $categories,
+            'cartItems' => $cartItems,
+        ]);
+    }
 
     public function product_detail($id)
     {

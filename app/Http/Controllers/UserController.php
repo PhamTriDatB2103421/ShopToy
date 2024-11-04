@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use RecommendHelper;
 
 class UserController extends Controller
 {
@@ -36,7 +37,6 @@ class UserController extends Controller
                 $request->session()->put('Role', $user->Role);
                 $request->session()->put('FullName', $user->FullName);
                 $request->session()->put('PhoneNumber', $user->PhoneNumber);
-
                 // Điều hướng dựa trên vai trò
                 if ($user->Role === 'Customer') {
                     return redirect()->route('home');

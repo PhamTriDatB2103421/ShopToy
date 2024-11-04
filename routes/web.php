@@ -10,6 +10,7 @@ use App\Http\Controllers\WebController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\SearchController;
 use App\Models\Order;
 
 // Trang chính
@@ -17,7 +18,8 @@ Route::get('/', [WebController::class, 'index'])->name('home');
 Route::get('/product', [WebController::class, 'product'])->name('product');
 Route::get('product/{id}',[WebController::class, 'product_detail'])->name('product_detail');
 Route::post('/product/{id}/review', [WebController::class, 'storeReview'])->name('product.review');
-
+Route::get('/category/{id}', [WebController::class, 'category_pro'])->name('category_pro');
+Route::post('/search', [SearchController::class, 'search'])->name('search');
 
 //cart
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add')->middleware('checklogin');

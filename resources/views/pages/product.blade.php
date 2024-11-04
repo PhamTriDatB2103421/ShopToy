@@ -58,79 +58,30 @@
                 <div id="aside" class="col-md-3">
                     <!-- aside Widget -->
                     <div class="aside">
-                        <h3 class="aside-title">Danh mục</h3>
-                        <div class="checkbox-filter">
-                            @foreach ($categories as $category)
-                                <div class="input-checkbox">
-                                    <input type="checkbox" id="category-{{ $loop->index + 1 }}"
-                                        value="{{ $category->CategoryId }}">
-                                    <label for="category-{{ $loop->index + 1 }}">
-                                        <span></span>
-                                        {{ $category->Name }}
-                                        <small>({{ $category->products_count }})</small>
-                                    </label>
-                                </div>
-                            @endforeach
-
-                        </div>
-                    </div>
-                    <!-- /aside Widget -->
-
-                    <!-- aside Widget -->
-                    <div class="aside">
-                        <h3 class="aside-title">Giá</h3>
-                        <div class="price-filter">
-                            <div id="price-slider"></div>
-                            <div class="input-number price-min">
-                                <input id="price-min" type="number">
-                                <span class="qty-up">+</span>
-                                <span class="qty-down">-</span>
-                            </div>
-                            <span>-</span>
-                            <div class="input-number price-max">
-                                <input id="price-max" type="number">
-                                <span class="qty-up">+</span>
-                                <span class="qty-down">-</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /aside Widget -->
-
-                    <!-- aside Widget -->
-                    <div class="aside">
                         <h3 class="aside-title">Gợi ý</h3>
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product01.png" alt="">
+                        @php
+                            $rcm = new \App\Helper\RecommendHelper();
+                            $rcm = $rcm->recommendWithOrder();
+                        @endphp
+                        @foreach ($rcm as $product)
+                            <div class="product-widget">
+                                <div class="product-img">
+                                    @php
+                                        $image = $product->images->first();
+                                    @endphp
+                                    <img src="{{ $image ? asset('storage/' . $image->ImageUrl) : 'default_image_url' }}"
+                                        alt="">
+                                </div>
+                                <div class="product-body">
+                                    <p class="product-category">{{ $product->category->Name }}</p>
+                                    <h3 class="product-name"><a
+                                            href="{{ URL::to('/product') . '/' . $product->ProductId }}">{{ $product->Name }}</a>
+                                    </h3>
+                                    <h4 class="product-price"> {{ number_format($product->Price, 0, ',', '.') }}đ</h4>
+                                </div>
                             </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                            </div>
-                        </div>
+                        @endforeach
 
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product02.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                            </div>
-                        </div>
-
-                        <div class="product-widget">
-                            <div class="product-img">
-                                <img src="./img/product03.png" alt="">
-                            </div>
-                            <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
-                            </div>
-                        </div>
                     </div>
                     <!-- /aside Widget -->
                 </div>
@@ -170,7 +121,9 @@
                                         </div>
                                         <div class="product-body">
                                             <p class="product-category">{{ $product->category->Name }}</p>
-                                            <h3 class="product-name"><a href="#">{{ $product->Name }}</a></h3>
+                                            <h3 class="product-name"><a
+                                                    href="{{ URL::to('/product') . '/' . $product->ProductId }}">{{ $product->Name }}</a>
+                                            </h3>
                                             <h4 class="product-price">{{ number_format($product->Price, 0, ',', '.') }}đ
                                             </h4>
                                             <div class="product-btns">
@@ -179,8 +132,7 @@
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
-                                            <button class="add-to-cart-btn"
-                                                data-product-id="{{ $product->ProductId }}"><i
+                                            <button class="add-to-cart-btn" data-product-id="{{ $product->ProductId }}"><i
                                                     class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
                                         </div>
                                     </div>

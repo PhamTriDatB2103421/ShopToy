@@ -225,13 +225,9 @@
                     <!-- SEARCH BAR -->
                     <div class="col-md-6">
                         <div class="header-search">
-                            <form>
+                            <form method="POST" action="{{ route('search') }}">
                                 @csrf
-                                {{-- <select class="input-select" name="category_id">
-										<option value="0">Danh mục</option>
-                                        @yield('categories')
-									</select> --}}
-                                <input class="input" placeholder="Tìm kiếm ở đây">
+                                <input class="input" name="search_val" placeholder="Tìm kiếm ở đây">
                                 <button class="search-btn">Tìm kiếm</button>
                             </form>
                         </div>
@@ -333,6 +329,14 @@
                 <ul class="main-nav nav navbar-nav">
                     <li class="active"><a href="{{ url('/') }}">Trang chủ</a></li>
                     <li class="active"><a href="{{ url('/product') }}">Sản phẩm</a></li>
+                    @php
+                        $categories = App\Models\Category::all();
+                    @endphp
+                    @foreach ($categories as $category)
+                        <li class="active"><a
+                                href="{{ route('category_pro', $category->CategoryId) }}">{{ $category->Name }}</a>
+                        </li>
+                    @endforeach
 
                 </ul>
                 <!-- /NAV -->

@@ -1,10 +1,13 @@
 <?php
+namespace App\Helper;
+
 use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Cart;
 use App\Models\CartItem;
 use App\Models\Product;
+
 
 class RecommendHelper {
     public function recommendWithHotSaling() {
@@ -25,13 +28,12 @@ class RecommendHelper {
             return $recommendedProducts;
         }
     }
-
     protected function recommendProductsBasedOnOrder($order) {
-        $purchasedProductIds = $order->chiTietDonHangs->pluck('ProductId')->toArray();
+        $purchasedProductIds = $order->orderItems->pluck('ProductId')->toArray();
         $purchasedCategories = Product::whereIn('ProductId', $purchasedProductIds)
-            ->pluck('CatagoryId')
+            ->pluck('CategoryId')
             ->toArray();
-        $recommendedProducts = Product::whereIn('CatagoryId', $purchasedCategories)
+        $recommendedProducts = Product::whereIn('CategoryId', $purchasedCategories)
             ->whereNotIn('ProductId', $purchasedProductIds)
             ->with('images')
             ->take(5)
