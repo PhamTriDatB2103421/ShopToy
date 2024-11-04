@@ -28,6 +28,7 @@ class RecommendHelper {
             return $recommendedProducts;
         }
     }
+
     protected function recommendProductsBasedOnOrder($order) {
         $purchasedProductIds = $order->orderItems->pluck('ProductId')->toArray();
         $purchasedCategories = Product::whereIn('ProductId', $purchasedProductIds)

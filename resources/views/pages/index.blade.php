@@ -20,7 +20,8 @@
                 <img src="{{ asset('storage/' . $imageUrl) }}" alt="{{ $productName }}">
             </div>
             <div class="product-body">
-                <h3 class="product-name"><a href="#">{{ $productName }}</a></h3>
+                <h3 class="product-name"><a href="{{ route('product_detail', $product->ProductId) }}">{{ $productName }}</a>
+                </h3>
                 <h4 class="product-price">
                     <span class="qty">{{ $quantity }}x</span>{{ number_format($totalPrice, 0, ',', '.') }}đ
                 </h4>

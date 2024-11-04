@@ -7,11 +7,9 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\WebController;
-use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
-use App\Models\Order;
 
 // Trang chính
 Route::get('/', [WebController::class, 'index'])->name('home');
@@ -20,6 +18,7 @@ Route::get('product/{id}',[WebController::class, 'product_detail'])->name('produ
 Route::post('/product/{id}/review', [WebController::class, 'storeReview'])->name('product.review');
 Route::get('/category/{id}', [WebController::class, 'category_pro'])->name('category_pro');
 Route::post('/search', [SearchController::class, 'search'])->name('search');
+
 
 //cart
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add')->middleware('checklogin');
@@ -42,7 +41,10 @@ Route::post('/user_info/save', [UserController::class, 'save_user_edit'])->name(
 Route::get('/user_info/{id}', [UserController::class, 'info_user'])->name('info_user');
 // Admin
 Route::middleware(['admin'])->prefix('admin')->group(function () {
+
     Route::get('/index', [AdminController::class, 'index'])->name('admin.index');
+    Route::post('/revenue', [AdminController::class, 'getRevenue'])->name('revenue');
+
     //users
     Route::get('/all_users', [UserController::class, 'all_users'])->name('admin.all_users');
     Route::get('edit/{email}', [UserController::class, 'edit_user'])->name('admin.edit_user');
