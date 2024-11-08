@@ -78,10 +78,6 @@
                                                     </h3>
                                                     <h4 class="product-price">
                                                         {{ number_format($product->Price, 0, ',', '.') }}đ</h4>
-                                                    <div class="product-btns">
-                                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                                class="tooltipp">Thêm vào yêu thích</span></button>
-                                                    </div>
                                                 </div>
                                                 <div class="add-to-cart">
                                                     <button class="add-to-cart-btn"
@@ -92,8 +88,6 @@
                                         </div>
                                         <!-- /product -->
                                     @endforeach
-
-
                                 </div>
                                 <div id="slick-nav-1" class="products-slick-nav"></div>
                             </div>
@@ -144,9 +138,9 @@
                                 </div>
                             </li>
                         </ul>
-                        <h2 class="text-uppercase">Giá sốc tuần này</h2>
+                        <h2 class="text-uppercase">Voucher giảm giá<br>Dành riêng cho khách hàng mới</h2>
                         <p>Giảm giá lên đến 50%</p>
-                        <a class="primary-btn cta-btn" href="#">Đặt hàng ngay</a>
+                        <a class="primary-btn cta-btn" href="{{ asset('/login') }}">ĐĂNG KÝ NGAY !!!</a>
                     </div>
                 </div>
             </div>
@@ -199,10 +193,6 @@
                                                     </h3>
                                                     <h4 class="product-price">
                                                         {{ number_format($product->Price, 0, ',', '.') }}đ</h4>
-                                                    <div class="product-btns">
-                                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                                class="tooltipp">Thêm vào yêu thích</span></button>
-                                                    </div>
                                                 </div>
                                                 <div class="add-to-cart">
                                                     <button class="add-to-cart-btn"
@@ -213,8 +203,6 @@
                                         </div>
                                         <!-- /product -->
                                     @endforeach
-
-
                                 </div>
                                 <div id="slick-nav-1" class="products-slick-nav"></div>
                             </div>

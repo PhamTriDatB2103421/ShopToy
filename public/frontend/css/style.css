@@ -829,6 +829,7 @@ textarea.input {
     background-image: url('../img/hotdeal.png');
     background-position: center;
     background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .hot-deal {

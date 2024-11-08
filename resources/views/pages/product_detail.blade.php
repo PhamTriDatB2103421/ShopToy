@@ -66,8 +66,6 @@
                                     alt="{{ $product_detail->Name }}">
                             </div>
                         @endforeach
-
-
                     </div>
                 </div>
                 <!-- /Product main img -->
@@ -98,7 +96,7 @@
                         </div>
                         <div>
                             <h3 class="product-price">{{ number_format($product_detail->Price, 0, ',', '.') }}đ</h3>
-                            <span class="product-available">In Stock</span>
+                            <span class="product-available">Còn hàng</span>
                         </div>
                         <p>{{ $product_detail->Description }}</p>
                         <div class="add-to-cart">
@@ -115,12 +113,6 @@
                             <button class="add-to-cart-btn" data-product-id="{{ $product_detail->ProductId }}"><i
                                     class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
                         </div>
-
-                        <ul class="product-btns">
-                            <li><a href="#"><i class="fa fa-heart-o"></i> Thêm vào yêu thích</a></li>
-                            <li><a href="#"><i class="fa fa-exchange"></i> So Sánh</a></li>
-                        </ul>
-
                         <ul class="product-links">
                             <li>Danh mục:</li>
                             <li><a href="#">{{ $product_detail->category->Name }}</a></li>

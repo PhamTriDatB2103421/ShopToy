@@ -126,10 +126,6 @@
                                             </h3>
                                             <h4 class="product-price">{{ number_format($product->Price, 0, ',', '.') }}đ
                                             </h4>
-                                            <div class="product-btns">
-                                                <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                        class="tooltipp">Thêm vào yêu thích</span></button>
-                                            </div>
                                         </div>
                                         <div class="add-to-cart">
                                             <button class="add-to-cart-btn" data-product-id="{{ $product->ProductId }}"><i
