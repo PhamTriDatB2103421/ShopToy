@@ -140,7 +140,7 @@
                         </ul>
                         <h2 class="text-uppercase">Voucher giảm giá<br>Dành riêng cho khách hàng mới</h2>
                         <p>Giảm giá lên đến 50%</p>
-                        <a class="primary-btn cta-btn" href="{{ asset('/login') }}">ĐĂNG KÝ NGAY !!!</a>
+                        <a class="primary-btn cta-btn" href="{{ asset('/login') }}">Nhấp vào đây!!!</a>
                     </div>
                 </div>
             </div>
