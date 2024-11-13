@@ -237,15 +237,6 @@
                     <!-- ACCOUNT -->
                     <div class="col-md-3 clearfix">
                         <div class="header-ctn">
-                            <!-- Wishlist -->
-                            <div>
-                                <a href="{{ url('') }}">
-                                    <i class="fa fa-heart-o"></i>
-                                    <span>Yêu thích</span>
-                                    <div class="qty">0</div>
-                                </a>
-                            </div>
-                            <!-- /Wishlist -->
                             @php
                                 if (Session('UserId')) {
                                     $cart = DB::select('select CartId from Carts where UserId = ' . session('UserId'));
