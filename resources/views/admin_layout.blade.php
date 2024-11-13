@@ -106,8 +106,8 @@
                                 <a class="dropdown-item" href="{{ route('info_user', session('UserId')) }}"><i
                                         class="mdi mdi-account me-1 ms-1"></i>Thông tin cá nhân</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ url('/') }}"><i
-                                    class="fas fa-sync"></i>Chuyển sang giao diện shop</a>
+                                <a class="dropdown-item" href="{{ url('/') }}"><i class="fas fa-sync"></i>Chuyển
+                                    sang giao diện shop</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ url('logout') }}"><i
                                         class="fa fa-power-off me-1 ms-1"></i> Logout</a>
@@ -209,16 +209,13 @@
                         </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
-                                aria-expanded="false"><i class="fas fa-shopping-bag"></i><span
-                                    class="hide-menu">Danh sách đơn hàng</span></a>
+                                aria-expanded="false"><i class="fas fa-shopping-bag"></i><span class="hide-menu">Danh
+                                    sách đơn hàng</span></a>
                             <ul aria-expanded="false" class="collapse first-level">
                                 <li class="sidebar-item">
                                     <a href="{{ url('admin/order/list') }}" class="sidebar-link"><i
-                                            class="fas fa-shopping-cart"></i></i><span class="hide-menu">Danh sách đơn</span></a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="{{ url('admin/order/reveneu') }}" class="sidebar-link"><i
-                                            class="fas fa-chart-pie"></i><span class="hide-menu">Thống kê danh thu</span></a>
+                                            class="fas fa-shopping-cart"></i></i><span class="hide-menu">Danh sách
+                                            đơn</span></a>
                                 </li>
                             </ul>
                         </li>

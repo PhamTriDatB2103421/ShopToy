@@ -48,7 +48,7 @@ class AdminController extends Controller
         return view('admin.index', [
             'totalRevenue' => $totalRevenue,
             'month' => $month,
-            'year' => $year,
+            'yeards' => $year,
             'newUser' => $newUser,
             'totalUser' => $totalUser,
             'totalCart' => $totalCart,

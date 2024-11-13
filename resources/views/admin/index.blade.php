@@ -103,7 +103,7 @@
                                             <div class="col-12">
                                                 <div class="bg-success p-10 text-white text-center">
                                                     <h5 class="mb-0 mt-1">Doanh thu tháng
-                                                        {{ $month }}/{{ $year }}:</h5>
+                                                        {{ $month }}/{{ $yeards }}:</h5>
                                                     <h3 class="font-weight-bold">
                                                         {{ number_format($totalRevenue, 0, ',', '.') }} VNĐ</h3>
                                                 </div>
