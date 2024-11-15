@@ -263,7 +263,7 @@
                                         @endif
                                     </div>
                                     <div class="cart-summary">
-                                        <small>{{ Session::has('cart') ? Session::get('cart')->count() . ' Item(s) selected' : '0 Item(s) selected' }}</small>
+                                        <small>{{ Session::has('cart') ? Session::get('cart')->count() . ' sản phẩm' : 'Không có sản phẩm nào' }}</small>
                                         <h5>Tổng cộng:
                                             {{ number_format(
                                                 Session::has('cart')
@@ -380,8 +380,6 @@
                             <h3 class="footer-title">Thông tin</h3>
                             <ul class="footer-links">
                                 <li><a href="#">Liên hệ</a></li>
-                                <li><a href="#">Chính sách hỗ trợ</a></li>
-                                <li><a href={{ url('/order/list') }}>Đơn hàng</a></li>
                                 <li><a href="#">Điều khoản và điều kiện</a></li>
                             </ul>
                         </div>
@@ -392,9 +390,6 @@
                             <h3 class="footer-title">Dịch vụ</h3>
                             <ul class="footer-links">
                                 <li><a href={{ url('/user_info/{id}') }}>Thông tin tài khoản</a></li>
-                                <li><a href="#">Giỏ hàng</a></li>
-                                <li><a href="#">Yêu thích</a></li>
-                                <li><a href="#">Đơn hàng</a></li>
                                 <li><a href="#">Hỗ trợ</a></li>
                             </ul>
                         </div>
@@ -412,14 +407,6 @@
                 <!-- row -->
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <ul class="footer-payments">
-                            <li><a href="#"><i class="fa fa-cc-visa"></i></a></li>
-                            <li><a href="#"><i class="fa fa-credit-card"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-paypal"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-mastercard"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-discover"></i></a></li>
-                            <li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
-                        </ul>
                         <span class="copyright">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Nhóm 2 Phát triển Thương mại điện tử;

@@ -82,14 +82,14 @@
                 @csrf
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" name="email"
-                        placeholder="Enter your email" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email"
+                        required>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Mật khẩu</label>
                     <input type="password" class="form-control" id="password" name="password"
-                        placeholder="Enter your password" required>
+                        placeholder="Nhập mật khẩu" required>
                 </div>
                 <button type="submit" class="btn btn-dark w-100">Đăng nhập</button>
             </form>
@@ -107,22 +107,23 @@
                 @csrf
                 <div class="form-group">
                     <label for="signup-email">Email</label>
-                    <input type="email" class="form-control" id="signup-email" name="email"
-                        placeholder="Enter your email" required>
+                    <input type="email" class="form-control" id="signup-email" name="email" placeholder="Nhập email"
+                        required>
                 </div>
                 <div class="form-group">
                     <label for="email">Họ và Tên</label>
-                    <input type="name" class="form-control" id="text" name="fullname" placeholder="" required>
+                    <input type="name" class="form-control" id="text" name="fullname"
+                        placeholder="Nhập họ và tên" required>
                 </div>
                 <div class="form-group">
                     <label for="signup-password">Mật khẩu</label>
                     <input type="password" class="form-control" id="signup-password" name="password"
-                        placeholder="Enter your password" required>
+                        placeholder="Nhập mật khẩu" required>
                 </div>
                 <div class="form-group">
                     <label for="signup-password-confirm">Xác nhận mật khẩu</label>
                     <input type="password" class="form-control" id="signup-password-confirm"
-                        name="password_confirmation" placeholder="Confirm your password" required>
+                        name="password_confirmation" placeholder="Xác nhận mật khẩu" required>
                 </div>
                 <button type="submit" class="btn btn-dark w-100">Đăng ký</button>
             </form>
