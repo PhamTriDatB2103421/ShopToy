@@ -27,8 +27,9 @@
     <!-- Custom stlylesheet -->
     <link type="text/css" rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" />
     <!--Start of Fchat.vn-->
-    <script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=66f2ef22e7629d5de041a934"
-        async="async"></script><!--End of Fchat.vn-->
+    <script type="text/javascript" src="https://cdn.fchat.vn/assets/embed/webchat.js?id=674205babc75fd47417ce10a"
+        async="async"></script>
+    <!--End of Fchat.vn-->
 </head>
 <style>
     /* Style for dropdown menu */
