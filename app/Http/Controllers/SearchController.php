@@ -14,24 +14,25 @@ class SearchController extends Controller
     {
         $search_value = $request->input('search_val');
 
-        $products = Product::where('Name', 'like', '%' . $search_value . '%')->with('images')->get();
+        $products = Product::where('Name', 'like', '%'.$search_value.'%')->with('images')->get();
 
         if ($products->isEmpty()) {
-            $products = Product::where('Description', 'like', '%' . $search_value . '%')->with('images')->get();
+            $products = Product::where('Description', 'like', '%'.$search_value.'%')->with('images')->get();
         }
 
         if ($products->isEmpty()) {
-            $categoryIds = Category::where('Name', 'like', '%' . $search_value . '%')->pluck('CategoryId');
+            $categoryIds = Category::where('Name', 'like', '%'.$search_value.'%')->pluck('CategoryId');
+            if ($categoryIds->isEmpty()) {
+                if ($products->isEmpty()) {
+                    $cart = Cart::where('UserId', Auth::id())->first();
+                    $cartItems = $cart ? $cart->cartItems()->with('product')->get() : collect([]);
 
+                    return view('pages.empty', [
+                        'cartItems' => $cartItems,
+                    ]);
+                }
+            }
             $products = Product::where('CategoryId', $categoryIds)->with('images')->get();
-        }
-        if ($products->isEmpty()) {
-            $cart = Cart::where('UserId', Auth::id())->first();
-            $cartItems = $cart ? $cart->cartItems()->with('product')->get() : collect([]);
-
-            return view('pages.empty', [
-                'cartItems' => $cartItems,
-            ]);
         }
 
         $categories = Category::withCount('products')->get();
